@@ -141,7 +141,7 @@ $:content
                     url: '/brillo-contraste',
                     data: {brillo: jQuery('#bright').val(), contraste: jQuery('#contrast').val()}
                 }).success(function (result) {
-                    //document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:image/jpeg;base64,' + result + '">'
+                    document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:image/jpeg;base64,' + result + '">'
                     //document.getElementById('imagen').innerHTML= 'asdasdasd'
 
                 })

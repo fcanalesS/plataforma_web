@@ -162,7 +162,13 @@ class BrilloContraste:
         img_list = os.listdir(image_path)
         img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
 
-        print brillo, contraste
+        mul_img = cv2.multiply(img, np.array([contraste]))  # Simple constrast control
+        new_img = cv2.add(mul_img, np.array([brillo]))  # Simple brightness control
+
+        _, data = cv2.imencode('.jpg', new_img)
+        jpeg_base64 = base64.b64encode(data.tostring())
+
+        return jpeg_base64
 
 
 class Test:
