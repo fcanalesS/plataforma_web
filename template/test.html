@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PRuebas</title>
+    <style>
+        body {
+            background: #555555;
+        }
+
+        #eq > span{
+            height:120px; float:left; margin:15px
+        }
+
+        #eq2 > span{
+            height:120px; float:left; margin:15px
+        }
+    </style>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+</head>
+<body>
+
+
+<div id="slider" style="width: 10em;"></div>
+<br>
+<input type="text" id="value-range">
+
+<p class="ui-state-default ui-corner-all" style="padding:4px;margin-top:4em;">
+    <span class="ui-icon ui-icon-signal" style="float:left; margin:-2px 5px 0 0;"></span>
+    Graphic EQ
+</p>
+
+<div id="eq">
+    <span>0</span>
+    <span>0</span>
+    <span>0</span>
+</div>
+<input type="text" id="blue" value="0">
+<input type="text" id="green" value="0">
+<input type="text" id="red" value="0">
+
+
+
+<script src="../static/js/jquery-1.12.3.min.js"></script>
+<script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"
+        integrity="sha256-xI/qyl9vpwWFOXz7+x/9WkG5j/SVnSw21viy8fWwbeE=" crossorigin="anonymous"></script>
+<script>
+
+    jQuery("#eq > span").each(function (i) {
+        // read initial values from markup and remove that
+        var value = parseInt(jQuery(this).text(), 3);
+        jQuery(this).empty().slider({
+            value: value,
+            range: 'max',
+            min: -100,
+            max: 100,
+            animate: true,
+            orientation: "vertical",
+            slide: function (event, ui){
+                if (i==0){
+                    jQuery('#blue').val(ui.value)
+                }
+                if (i==1){
+                    jQuery('#green').val(ui.value)
+                }
+                if (i==2){
+                    jQuery('#red').val(ui.value)
+                }
+
+                jQuery.ajax({
+                    method: 'get',
+                    url: 'pruebas-ajax',
+                    data: {blue: jQuery('#blue').val(), green: jQuery('#green').val(), red: jQuery('#red').val()}
+                })
+            }
+        });
+    });
+
+    jQuery("#slider").slider({
+        range: 'max',
+        min: -100,
+        max: 100,
+        value: 0,
+        slide: function (event, ui) {
+            jQuery('#value-range').val(ui.value);
+            var range = ui.value;
+            console.log(range);
+            jQuery.ajax({
+                method: 'get',
+                url: '/pruebas-ajax',
+                data: {blue: range / 100}
+            })
+        }
+    });
+</script>
+</body>
+</html>

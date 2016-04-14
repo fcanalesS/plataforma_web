@@ -1,0 +1,152 @@
+$def with (content)
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$content.title</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <style>
+        body {
+            background: #5e5e5e;
+        }
+
+        #eq > span{
+            height:120px;
+            float: left;
+            margin:15px
+        }
+        #eq2 > span{
+            height:120px; float:left; margin:15px; text-align: center;
+        }
+
+        .divider {
+            border-bottom: 1px solid purple;
+            margin-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .upload-url {
+            width: 51.5em;
+            margin-bottom: 1em;
+        }
+
+        .wrapper-tools, #imagen {
+            border-top: 5px solid rebeccapurple;
+            background: rgb(255, 255, 255);
+            padding: 1em;
+        }
+
+        .wrapper-upload {
+            border-top: 5px solid rebeccapurple;
+            background: rgb(255, 255, 255);
+            padding: 1em;
+            margin-top: 15em;
+        }
+    </style>
+</head>
+<body>
+$:content
+
+<script src="../static/js/jquery-1.12.3.min.js"></script>
+<script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"
+        integrity="sha256-xI/qyl9vpwWFOXz7+x/9WkG5j/SVnSw21viy8fWwbeE=" crossorigin="anonymous"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+
+<script>
+
+    jQuery('#go-back').click(function () {
+        document.reload()
+    });
+    jQuery('#enhanced').click(function () {
+        jQuery.get('/enhanced', function (result) {
+            document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:image/jpeg;base64,' + result + '">'
+            //document.write(result)
+        })
+    });
+
+    jQuery('#negative').click(function () {
+        jQuery.get('/negative', function (result) {
+            document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:image/jpeg;base64,' + result + '">'
+            //document.write(result)
+        })
+    });
+
+    jQuery('#sepia').click(function () {
+        jQuery.get('/sepia', function (result) {
+            document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:image/jpeg;base64,' + result + '">'
+            //document.write(result)
+        })
+    });
+
+    jQuery("#eq > span").each(function (i) {
+        // read initial values from markup and remove that
+        var value = parseInt(jQuery(this).text(), 3);
+        jQuery(this).empty().slider({
+            value: value,
+            range: 'max',
+            min: -100,
+            max: 100,
+            animate: true,
+            orientation: "vertical",
+            slide: function (event, ui){
+                if (i==0){
+                    jQuery('#blue').val(ui.value)
+                }
+                if (i==1){
+                    jQuery('#green').val(ui.value)
+                }
+                if (i==2){
+                    jQuery('#red').val(ui.value)
+                }
+
+                jQuery.ajax({
+                    method: 'get',
+                    url: '/bgr',
+                    data: {blue: jQuery('#blue').val(), green: jQuery('#green').val(), red: jQuery('#red').val()}
+                }).success(function (result) {
+                    document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:image/jpeg;base64,' + result + '">'
+                    //document.getElementById('imagen').innerHTML= 'asdasdasd'
+                })
+            }
+        });
+    });
+
+    jQuery("#eq2 > span").each(function (i) {
+        // read initial values from markup and remove that
+        var value = parseInt(jQuery(this).text(), 3);
+        jQuery(this).empty().slider({
+            value: value,
+            range: 'max',
+            min: -100,
+            max: 100,
+            animate: true,
+            orientation: "vertical",
+            slide: function (event, ui){
+                if (i==0){
+                    jQuery('#blue').val(ui.value)
+                }
+                if (i==1){
+                    jQuery('#green').val(ui.value)
+                }
+                if (i==2){
+                    jQuery('#red').val(ui.value)
+                }
+
+                jQuery.ajax({
+                    method: 'get',
+                    url: '/bgr',
+                    data: {blue: jQuery('#blue').val(), green: jQuery('#green').val(), red: jQuery('#red').val()}
+                }).success(function (result) {
+                    document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:image/jpeg;base64,' + result + '">'
+                    //document.getElementById('imagen').innerHTML= 'asdasdasd'
+                })
+            }
+        });
+    });
+</script>
+</body>
+</html>

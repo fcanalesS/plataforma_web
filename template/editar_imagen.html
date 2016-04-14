@@ -1,0 +1,51 @@
+$def with (img)
+$var title = 'Abrir imágen'
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="wrapper-tools">
+                <h5>Efectos de imágen</h5>
+                <div class="divider"></div>
+                <button class="btn btn-default" style="width: auto;" id="enhanced"><span></span>Auto corrección</button>
+                <button class="btn btn-default" style="width: auto;" id="negative">Negativo</button>
+                <button class="btn btn-default" id="sepia">Sepia</button>
+                <div class="divider"></div>
+                <button class="btn btn-success" id="go-back">E</button>
+                <button class="btn btn-success pull-right" id="go-back"><-</button>
+                <br>
+                <button class="btn btn-success" id="go-back">E</button>
+                <button class="btn btn-success pull-right" id="go-back"><-</button>
+            </div>
+            <div class="wrapper-tools" style="height: 16em; margin-top: 10px">
+                <h5>Controles BGR</h5>
+                <div class="divider"></div>
+                <div id="eq">
+                    <span>0</span>
+                    <span>0</span>
+                    <span>0</span>
+                </div>
+                <input type="text" id="blue" value="0" hidden>
+                <input type="text" id="green" value="0" hidden>
+                <input type="text" id="red" value="0" hidden>
+            </div>
+            <div class="wrapper-tools" style="height: 16em; margin-top: 10px">
+                <h5>Brillo / Contraste</h5>
+                <div class="divider"></div>
+                <div id="eq2">
+                    <span>0</span>
+                    <span>0</span>
+                </div>
+                <input type="text" id="bright" value="0" hidden>
+                <input type="text" id="contrast" value="0" hidden>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div id="imagen">
+                <img class="img-responsive" src="data:image/jpeg;base64,$img" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+
+
