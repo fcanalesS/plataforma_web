@@ -18,6 +18,7 @@ urls = (
     '/negative', 'Negative',
     '/sepia', 'Sepia',
     '/bgr', 'BGR',
+    '/brillo-contraste', 'BrilloContraste',
     '/pruebas', 'Test',
     '/pruebas-ajax', 'Test_ajax'
 
@@ -151,6 +152,17 @@ class BGR:
         _, data = cv2.imencode('.jpg', res)
         jpeg_base64 = base64.b64encode(data.tostring())
         return jpeg_base64
+
+class BrilloContraste:
+    def GET(self):
+        brillo = (float(web.input().brillo)+100)/100
+        contraste = (float(web.input().contraste)+100)/100
+
+        image_path = os.getcwd() + '/images/'
+        img_list = os.listdir(image_path)
+        img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
+
+        print brillo, contraste
 
 
 class Test:
