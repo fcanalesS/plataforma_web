@@ -14,6 +14,7 @@ for dirname in include_dirs:
 urls = (
     '/', 'SubirImagen',
     '/editar-imagen', 'EditarImagen',
+    '/editar-imagen2', 'EditarImagen2',
     '/enhanced', 'Enhanced',
     '/negative', 'Negative',
     '/sepia', 'Sepia',
@@ -29,6 +30,7 @@ app = web.application(urls, locals())
 static_dir = os.path.abspath(os.path.dirname(__file__)) + '/static'
 template_dir = os.path.abspath(os.path.dirname(__file__)) + '/template'
 htmlout = web.template.render(template_dir, base='layout')
+htmlout2 = web.template.render(template_dir, base='layout2')
 render_plain = web.template.render('template/')
 message = ''
 
@@ -75,6 +77,12 @@ class EditarImagen:
         jpeg_base64 = base64.b64encode(data.tostring())
 
         return htmlout.editar_imagen(jpeg_base64)
+
+class EditarImagen2:
+    def GET(self):
+
+
+        return htmlout.editar_imagen2(None)
 
 
 class Enhanced:
@@ -164,7 +172,7 @@ class BrilloContraste:
         img2hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
         h, s, v = cv2.split(img2hsv)
 
-        h =cv2.multiply(h, np.array([contraste]))
+        s =cv2.multiply(s, np.array([contraste]))
         v =cv2.multiply(v, np.array([brillo]))
 
         res = cv2.merge((h, s, v))
