@@ -161,11 +161,15 @@ class BrilloContraste:
         image_path = os.getcwd() + '/images/'
         img_list = os.listdir(image_path)
         img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
+        img2hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+        h, s, v = cv2.split(img2hsv)
 
-        mul_img = cv2.multiply(img, np.array([contraste]))  # Simple constrast control
-        new_img = cv2.add(mul_img, np.array([brillo]))  # Simple brightness control
+        h =cv2.multiply(h, np.array([contraste]))
+        v =cv2.multiply(v, np.array([brillo]))
 
-        _, data = cv2.imencode('.jpg', new_img)
+        res = cv2.merge((h, s, v))
+
+        _, data = cv2.imencode('.jpg', cv2.cvtColor(res, cv2.COLOR_HSV2BGR))
         jpeg_base64 = base64.b64encode(data.tostring())
 
         return jpeg_base64
