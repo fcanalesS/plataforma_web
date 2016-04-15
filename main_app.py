@@ -20,6 +20,7 @@ urls = (
     '/sepia', 'Sepia',
     '/bgr', 'BGR',
     '/brillo-contraste', 'BrilloContraste',
+    '/rotate', 'Rotate',
     '/pruebas', 'Test',
     '/pruebas-ajax', 'Test_ajax'
 
@@ -80,9 +81,13 @@ class EditarImagen:
 
 class EditarImagen2:
     def GET(self):
+        image_path = os.getcwd() + '/images/'
+        img_list = os.listdir(image_path)
+        img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
+        _, data = cv2.imencode('.jpg', img)
+        jpeg_base64 = base64.b64encode(data.tostring())
 
-
-        return htmlout.editar_imagen2(None)
+        return htmlout.editar_imagen2(jpeg_base64)
 
 
 class Enhanced:
@@ -178,6 +183,21 @@ class BrilloContraste:
         res = cv2.merge((h, s, v))
 
         _, data = cv2.imencode('.jpg', cv2.cvtColor(res, cv2.COLOR_HSV2BGR))
+        jpeg_base64 = base64.b64encode(data.tostring())
+
+        return jpeg_base64
+
+class Rotate:
+    def GET(self):
+        image_path = os.getcwd() + '/images/'
+        img_list = os.listdir(image_path)
+        img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
+        angle = float(web.input().angle)
+        rows, cols, _ = img.shape
+        M = cv2.getRotationMatrix2D((cols/2, rows/2), angle, 1)
+        dst = cv2.warpAffine(img, M, (cols, rows))
+
+        _, data = cv2.imencode('.jpg', dst)
         jpeg_base64 = base64.b64encode(data.tostring())
 
         return jpeg_base64

@@ -1,69 +1,4 @@
-$def with (content)
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$content.title</title>
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../static/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <style>
-        body {
-            background: #5e5e5e;
-        }
-
-        #eq > span{
-            height:120px;
-            float: left;
-            margin:15px
-        }
-        #eq2 > span{
-            height:120px; float:left; margin:15px; text-align: center;
-        }
-        #eq3 > span{
-            height:120px; float:left; margin:15px; text-align: center;
-        }
-
-        .divider {
-            border-bottom: 1px solid purple;
-            margin-bottom: 10px;
-            margin-top: 0;
-        }
-
-        .upload-url {
-            width: 51.5em;
-            margin-bottom: 1em;
-        }
-
-        .wrapper-tools, #imagen {
-            border-top: 5px solid rebeccapurple;
-            background: rgb(255, 255, 255);
-            padding: 1em;
-        }
-
-        .wrapper-upload {
-            border-top: 5px solid rebeccapurple;
-            background: rgb(255, 255, 255);
-            padding: 1em;
-            margin-top: 15em;
-        }
-    </style>
-</head>
-<body>
-$:content
-
-<script src="../static/js/jquery-1.12.3.min.js"></script>
-<script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"
-        integrity="sha256-xI/qyl9vpwWFOXz7+x/9WkG5j/SVnSw21viy8fWwbeE=" crossorigin="anonymous"></script>
-<script src="../static/js/bootstrap.min.js"></script>
-<script src="../static/js/app.js"></script>
-<script src="../static/js/app2.js"></script>
-
-<script>
-
-/*    jQuery('#go-back').click(function () {
+    jQuery('#go-back').click(function () {
         document.reload()
     });
 
@@ -150,8 +85,6 @@ $:content
                 })
             }
         });
-    });*/
-
-</script>
-</body>
-</html>
+    });/**
+ * Created by fcanales on 15-04-16.
+ */
