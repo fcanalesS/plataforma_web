@@ -243,6 +243,31 @@ class Sharp:
     def GET(self):
         sharp = int(web.input().sharp)
 
+        image_path = os.getcwd() + '/images/'
+        img_list = os.listdir(image_path)
+        img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
+
+        # Create the identity filter, but with the 1 shifted to the right!
+        kernel = np.zeros((sharp, sharp), np.float32)
+        kernel[sharp-1, sharp-1] = 2.0  # Identity, times two!
+
+        # Create a box filter:
+        boxFilter = np.ones((sharp, sharp), np.float32) / float(pow(sharp, 2))
+
+        # Subtract the two:
+        kernel = kernel - boxFilter
+
+        # Note that we are subject to overflow and underflow here...but I believe that
+        # filter2D clips top and bottom ranges on the output, plus you'd need a
+        # very bright or very dark pixel surrounded by the opposite type.
+
+        custom = cv2.filter2D(img, -1, kernel)
+
+        _, data = cv2.imencode('.jpg', custom)
+        jpeg_base64 = base64.b64encode(data.tostring())
+
+        return jpeg_base64
+
 class Test:
     def GET(self):
         return render_plain.test()
