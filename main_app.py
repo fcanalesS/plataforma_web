@@ -21,6 +21,8 @@ urls = (
     '/bgr', 'BGR',
     '/brillo-contraste', 'BrilloContraste',
     '/rotate', 'Rotate',
+    '/mirror', 'Mirror',
+    '/sharp-blur','SharpBlur',
     '/pruebas', 'Test',
     '/pruebas-ajax', 'Test_ajax'
 
@@ -201,6 +203,26 @@ class Rotate:
         jpeg_base64 = base64.b64encode(data.tostring())
 
         return jpeg_base64
+
+class Mirror:
+    def GET(self):
+        image_path = os.getcwd() + '/images/'
+        img_list = os.listdir(image_path)
+        img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
+
+        mirror = cv2.flip(img, 1)
+
+        _, data = cv2.imencode('.jpg', mirror)
+        jpeg_base64 = base64.b64encode(data.tostring())
+
+        return jpeg_base64
+
+class SharpBlur:
+    def GET(self):
+        sharp = float(web.input().sharp)
+        blur = float(web.input().blur)
+
+        print sharp, blur
 
 
 class Test:
