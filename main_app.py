@@ -15,6 +15,7 @@ urls = (
     '/', 'SubirImagen',
     '/editar-imagen', 'EditarImagen',
     '/editar-imagen2', 'EditarImagen2',
+    '/editar-imagen3', 'EditarImagen3',
     '/enhanced', 'Enhanced',
     '/negative', 'Negative',
     '/sepia', 'Sepia',
@@ -92,6 +93,16 @@ class EditarImagen2:
         jpeg_base64 = base64.b64encode(data.tostring())
 
         return htmlout.editar_imagen2(jpeg_base64)
+
+class EditarImagen3:
+    def GET(self):
+        image_path = os.getcwd() + '/images/'
+        img_list = os.listdir(image_path)
+        img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
+        _, data = cv2.imencode('.jpg', img)
+        jpeg_base64 = base64.b64encode(data.tostring())
+
+        return htmlout.editar_imagen3(jpeg_base64)
 
 
 class Enhanced:
