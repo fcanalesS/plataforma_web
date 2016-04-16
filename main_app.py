@@ -22,7 +22,8 @@ urls = (
     '/brillo-contraste', 'BrilloContraste',
     '/rotate', 'Rotate',
     '/mirror', 'Mirror',
-    '/sharp-blur','SharpBlur',
+    '/blur', 'Blur',
+    '/sharp', 'Sharp',
     '/pruebas', 'Test',
     '/pruebas-ajax', 'Test_ajax'
 
@@ -80,6 +81,7 @@ class EditarImagen:
         jpeg_base64 = base64.b64encode(data.tostring())
 
         return htmlout.editar_imagen(jpeg_base64)
+
 
 class EditarImagen2:
     def GET(self):
@@ -149,9 +151,9 @@ class Sepia:
 
 class BGR:
     def GET(self):
-        blue = (float(web.input().blue)+100)/100
-        green = (float(web.input().green)+100)/100
-        red = (float(web.input().red)+100)/100
+        blue = (float(web.input().blue) + 100) / 100
+        green = (float(web.input().green) + 100) / 100
+        red = (float(web.input().red) + 100) / 100
 
         image_path = os.getcwd() + '/images/'
         img_list = os.listdir(image_path)
@@ -168,10 +170,11 @@ class BGR:
         jpeg_base64 = base64.b64encode(data.tostring())
         return jpeg_base64
 
+
 class BrilloContraste:
     def GET(self):
-        brillo = (float(web.input().brillo)+100)/100
-        contraste = (float(web.input().contraste)+100)/100
+        brillo = (float(web.input().brillo) + 100) / 100
+        contraste = (float(web.input().contraste) + 100) / 100
 
         image_path = os.getcwd() + '/images/'
         img_list = os.listdir(image_path)
@@ -179,8 +182,8 @@ class BrilloContraste:
         img2hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
         h, s, v = cv2.split(img2hsv)
 
-        s =cv2.multiply(s, np.array([contraste]))
-        v =cv2.multiply(v, np.array([brillo]))
+        s = cv2.multiply(s, np.array([contraste]))
+        v = cv2.multiply(v, np.array([brillo]))
 
         res = cv2.merge((h, s, v))
 
@@ -189,6 +192,7 @@ class BrilloContraste:
 
         return jpeg_base64
 
+
 class Rotate:
     def GET(self):
         image_path = os.getcwd() + '/images/'
@@ -196,13 +200,14 @@ class Rotate:
         img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
         angle = float(web.input().angle)
         rows, cols, _ = img.shape
-        M = cv2.getRotationMatrix2D((cols/2, rows/2), angle, 1)
+        M = cv2.getRotationMatrix2D((cols / 2, rows / 2), angle, 1)
         dst = cv2.warpAffine(img, M, (cols, rows))
 
         _, data = cv2.imencode('.jpg', dst)
         jpeg_base64 = base64.b64encode(data.tostring())
 
         return jpeg_base64
+
 
 class Mirror:
     def GET(self):
@@ -217,13 +222,26 @@ class Mirror:
 
         return jpeg_base64
 
-class SharpBlur:
+
+class Blur:
     def GET(self):
-        sharp = float(web.input().sharp)
-        blur = float(web.input().blur)
+        blur = int(web.input().blur)
 
-        print sharp, blur
+        image_path = os.getcwd() + '/images/'
+        img_list = os.listdir(image_path)
+        img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
 
+        output = cv2.blur(img, (blur, blur))
+
+        _, data = cv2.imencode('.jpg', output)
+        jpeg_base64 = base64.b64encode(data.tostring())
+
+        return jpeg_base64
+
+
+class Sharp:
+    def GET(self):
+        sharp = int(web.input().sharp)
 
 class Test:
     def GET(self):
