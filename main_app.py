@@ -25,6 +25,9 @@ urls = (
     '/mirror', 'Mirror',
     '/blur', 'Blur',
     '/sharp', 'Sharp',
+    '/convolucion', 'Convolucion',
+    '/fourier', 'Fourier',
+    '/disp-gaussian', 'DispGaussian',
     '/pruebas', 'Test',
     '/pruebas-ajax', 'Test_ajax'
 
@@ -278,6 +281,53 @@ class Sharp:
         jpeg_base64 = base64.b64encode(data.tostring())
 
         return jpeg_base64
+
+
+class Convolucion:
+    def GET(self):
+        image_path = os.getcwd() + '/images/'
+        img_list = os.listdir(image_path)
+        img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
+
+        kernel = np.ones((5,5),np.float32)/25
+        dst = cv2.filter2D(img,-1,kernel)
+
+        _, data = cv2.imencode('.jpg', dst)
+        jpeg_base64 = base64.b64encode(data.tostring())
+
+        return jpeg_base64
+
+
+class Fourier:
+    def GET(self):
+        image_path = os.getcwd() + '/images/'
+        img_list = os.listdir(image_path)
+        img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
+        dft = cv2.dft(np.float32(img),flags = cv2.DFT_COMPLEX_OUTPUT)
+        dft_shift = np.fft.fftshift(dft)
+
+        magnitude_spectrum = 20*np.log(cv2.magnitude(dft_shift[:,:,0],dft_shift[:,:,1]))
+
+        _, data = cv2.imencode('.jpg', magnitude_spectrum)
+        jpeg_base64 = base64.b64encode(data.tostring())
+
+        return jpeg_base64
+
+class DispGaussian:
+    def GET(self):
+        image_path = os.getcwd() + '/images/'
+        img_list = os.listdir(image_path)
+        img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
+
+        dst = cv2.GaussianBlur(img,(5,5),0)
+        for i in xrange(1,1000): # Para aplicarl filtro n veces
+            dst = cv2.GaussianBlur(dst,(5,5),0)
+
+        _, data = cv2.imencode('.jpg', dst)
+        jpeg_base64 = base64.b64encode(data.tostring())
+
+        return jpeg_base64
+
 
 class Test:
     def GET(self):
