@@ -28,6 +28,7 @@ urls = (
     '/convolucion', 'Convolucion',
     '/fourier', 'Fourier',
     '/disp-gaussian', 'DispGaussian',
+    '/border', 'Border',
     '/pruebas', 'Test',
     '/pruebas-ajax', 'Test_ajax'
 
@@ -328,6 +329,19 @@ class DispGaussian:
 
         return jpeg_base64
 
+
+class Border:
+    def GET(self):
+        image_path = os.getcwd() + '/images/'
+        img_list = os.listdir(image_path)
+        img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
+
+        edges = cv2.Canny(img, int(web.input().val1), int(web.input().val2))
+
+        _, data = cv2.imencode('.jpg', edges)
+        jpeg_base64 = base64.b64encode(data.tostring())
+
+        return jpeg_base64
 
 class Test:
     def GET(self):
