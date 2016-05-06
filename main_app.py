@@ -1,15 +1,14 @@
 # coding=utf-8
 import base64
-import json
-
+from mpi4py import MPI
 import web, os, sys, cv2, numpy as np
+import efectos1
 
-include_dirs = ['libs']
+comm = MPI.COMM_WORLD
+rank = comm.Get_rank()
+size = comm.Get_size()
 
-for dirname in include_dirs:
-    sys.path.append(os.path.dirname(__file__) + '/' + dirname)
 
-# from image_bgr import Procesar_bgr
 
 urls = (
     '/', 'SubirImagen',
@@ -62,7 +61,7 @@ app.add_processor(web.loadhook(variables_globales))
 
 class SubirImagen:
     def GET(self):
-        return htmlout.subir_imagen()
+        return htmlout.subir_imagen(size)
 
     def POST(self):
         x = web.input(upload_file={})
@@ -115,14 +114,17 @@ class Enhanced:
         img_list = os.listdir(image_path)
         img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
 
+
+        res_bgr = efectos1.Enhanced(img)
+
         # Tomar tiempo de aqui
-        b, g, r = cv2.split(img)
-
-        equb = cv2.equalizeHist(b)
-        equg = cv2.equalizeHist(g)
-        equr = cv2.equalizeHist(r)
-
-        res_bgr = cv2.merge((equb, equg, equr))
+        # b, g, r = cv2.split(img)
+        #
+        # equb = cv2.equalizeHist(b)
+        # equg = cv2.equalizeHist(g)
+        # equr = cv2.equalizeHist(r)
+        #
+        # res_bgr = cv2.merge((equb, equg, equr))
 
         _, data = cv2.imencode('.jpg', res_bgr)
         jpeg_base64 = base64.b64encode(data.tostring())
