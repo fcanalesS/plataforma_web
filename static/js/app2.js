@@ -9,7 +9,7 @@ jQuery('#rotate').slider({
             url: '/rotate',
             data: {angle: ui.value}
         }).success(function (result) {
-            document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:image/jpeg;base64,' + result + '">'
+            document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:images/jpeg;base64,' + result + '">'
         })
     }
 });
@@ -24,7 +24,7 @@ jQuery('#blur').slider({
             url: '/blur',
             data: {blur: ui.value}
         }).success(function (result) {
-            document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:image/jpeg;base64,' + result + '">'
+            document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:images/jpeg;base64,' + result + '">'
         })
     }
 });
@@ -39,7 +39,7 @@ jQuery('#sharp').slider({
             url: '/sharp',
             data: {sharp: ui.value}
         }).success(function (result) {
-            document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:image/jpeg;base64,' + result + '">'
+            document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:images/jpeg;base64,' + result + '">'
         })
     }
 });
@@ -49,7 +49,7 @@ jQuery('#mirror').click(function () {
         method: 'get',
         url: '/mirror'
     }).success(function (result) {
-        document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:image/jpeg;base64,' + result + '">'
+        document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:images/jpeg;base64,' + result + '">'
     });
 });
 
@@ -76,7 +76,7 @@ jQuery("#eq4 > span").each(function (i) {
                     url: '/border',
                     data: {val1: jQuery('#bright').val(), val2: jQuery('#contrast').val()}
                 }).success(function (result) {
-                    document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:image/jpeg;base64,' + result + '">'
+                    document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:images/jpeg;base64,' + result + '">'
                     //document.getElementById('imagen').innerHTML= 'asdasdasd'
 
                 })

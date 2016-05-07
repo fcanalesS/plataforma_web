@@ -61,6 +61,8 @@ app.add_processor(web.loadhook(variables_globales))
 
 class SubirImagen:
     def GET(self):
+        filedir = os.getcwd() + '/images'
+
         return htmlout.subir_imagen(size)
 
     def POST(self):
@@ -113,25 +115,31 @@ class Enhanced:
         image_path = os.getcwd() + '/images/'
         img_list = os.listdir(image_path)
         img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
+        alt, ancho, channel = img.shape
 
+        if alt < size:
+            raise web.redirect('/editar-imagen')
+        else:
+            print size
+            region = img[(alt / size) * rank:(alt / size) * (rank + 1), 0:ancho]
+            res_bgr = efectos1.Enhanced(region)
+            cv2.imwrite('regionEditada_' + str(rank) + '.jpg', res_bgr)
 
-        res_bgr = efectos1.Enhanced(img)
+            # Tomar tiempo de aqui
+            # b, g, r = cv2.split(img)
+            #
+            # equb = cv2.equalizeHist(b)
+            # equg = cv2.equalizeHist(g)
+            # equr = cv2.equalizeHist(r)
+            #
+            # res_bgr = cv2.merge((equb, equg, equr))
 
-        # Tomar tiempo de aqui
-        # b, g, r = cv2.split(img)
-        #
-        # equb = cv2.equalizeHist(b)
-        # equg = cv2.equalizeHist(g)
-        # equr = cv2.equalizeHist(r)
-        #
-        # res_bgr = cv2.merge((equb, equg, equr))
+            _, data = cv2.imencode('.jpg', res_bgr)
+            jpeg_base64 = base64.b64encode(data.tostring())
 
-        _, data = cv2.imencode('.jpg', res_bgr)
-        jpeg_base64 = base64.b64encode(data.tostring())
-
-        # Tomar tiempo hasta aquí
-        return jpeg_base64
-        # return htmlout.editar_imagen(jpeg_base64)
+            # Tomar tiempo hasta aquí
+            return jpeg_base64
+            # return htmlout.editar_imagen(jpeg_base64)
 
 
 class Negative:

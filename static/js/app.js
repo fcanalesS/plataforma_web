@@ -4,21 +4,21 @@
 
     jQuery('#enhanced').click(function () {
         jQuery.get('/enhanced', function (result) {
-            document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:image/jpeg;base64,' + result + '">'
+            document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:images/jpeg;base64,' + result + '">'
             //document.write(result)
         })
     });
 
     jQuery('#negative').click(function () {
         jQuery.get('/negative', function (result) {
-            document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:image/jpeg;base64,' + result + '">'
+            document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:images/jpeg;base64,' + result + '">'
             //document.write(result)
         })
     });
 
     jQuery('#sepia').click(function () {
         jQuery.get('/sepia', function (result) {
-            document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:image/jpeg;base64,' + result + '">'
+            document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:images/jpeg;base64,' + result + '">'
             //document.write(result)
         })
     });
@@ -49,7 +49,7 @@
                     url: '/bgr',
                     data: {blue: jQuery('#blue').val(), green: jQuery('#green').val(), red: jQuery('#red').val()}
                 }).success(function (result) {
-                    document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:image/jpeg;base64,' + result + '">'
+                    document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:images/jpeg;base64,' + result + '">'
                     //document.getElementById('imagen').innerHTML= 'asdasdasd'
                 })
             }
@@ -79,7 +79,7 @@
                     url: '/brillo-contraste',
                     data: {brillo: jQuery('#bright').val(), contraste: jQuery('#contrast').val()}
                 }).success(function (result) {
-                    document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:image/jpeg;base64,' + result + '">'
+                    document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:images/jpeg;base64,' + result + '">'
                     //document.getElementById('imagen').innerHTML= 'asdasdasd'
 
                 })
