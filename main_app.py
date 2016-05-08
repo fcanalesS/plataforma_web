@@ -8,6 +8,10 @@ comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
 size = comm.Get_size()
 
+def test():
+    print rank
+    print size
+
 
 
 urls = (
@@ -62,8 +66,9 @@ app.add_processor(web.loadhook(variables_globales))
 class SubirImagen:
     def GET(self):
         filedir = os.getcwd() + '/images'
+        test()
 
-        return htmlout.subir_imagen(size)
+        return htmlout.subir_imagen()
 
     def POST(self):
         x = web.input(upload_file={})
@@ -99,6 +104,7 @@ class EditarImagen2:
 
         return htmlout.editar_imagen2(jpeg_base64)
 
+
 class EditarImagen3:
     def GET(self):
         image_path = os.getcwd() + '/images/'
@@ -116,30 +122,23 @@ class Enhanced:
         img_list = os.listdir(image_path)
         img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
         alt, ancho, channel = img.shape
+        rank = comm.Get_rank()
+        size = comm.Get_size()
 
         if alt < size:
             raise web.redirect('/editar-imagen')
         else:
-            print size
+            print "SIZE: ", size
+            print "RANK: ", rank
             region = img[(alt / size) * rank:(alt / size) * (rank + 1), 0:ancho]
-            res_bgr = efectos1.Enhanced(region)
-            cv2.imwrite('regionEditada_' + str(rank) + '.jpg', res_bgr)
+            # res_bgr = efectos1.Enhanced(region)
+            cv2.imwrite(image_path + 'regionEditada_' + str(rank) + '.jpg', region)
 
-            # Tomar tiempo de aqui
-            # b, g, r = cv2.split(img)
-            #
-            # equb = cv2.equalizeHist(b)
-            # equg = cv2.equalizeHist(g)
-            # equr = cv2.equalizeHist(r)
-            #
-            # res_bgr = cv2.merge((equb, equg, equr))
-
-            _, data = cv2.imencode('.jpg', res_bgr)
-            jpeg_base64 = base64.b64encode(data.tostring())
+            #_, data = cv2.imencode('.jpg', res_bgr)
+            #jpeg_base64 = base64.b64encode(data.tostring())
 
             # Tomar tiempo hasta aquí
-            return jpeg_base64
-            # return htmlout.editar_imagen(jpeg_base64)
+            #return jpeg_base64
 
 
 class Negative:
@@ -274,7 +273,7 @@ class Sharp:
 
         # Create the identity filter, but with the 1 shifted to the right!
         kernel = np.zeros((sharp, sharp), np.float32)
-        kernel[sharp-1, sharp-1] = 2.0  # Identity, times two!
+        kernel[sharp - 1, sharp - 1] = 2.0  # Identity, times two!
 
         # Create a box filter:
         boxFilter = np.ones((sharp, sharp), np.float32) / float(pow(sharp, 2))
@@ -300,8 +299,8 @@ class Convolucion:
         img_list = os.listdir(image_path)
         img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
 
-        kernel = np.ones((5,5),np.float32)/25
-        dst = cv2.filter2D(img,-1,kernel)
+        kernel = np.ones((5, 5), np.float32) / 25
+        dst = cv2.filter2D(img, -1, kernel)
 
         _, data = cv2.imencode('.jpg', dst)
         jpeg_base64 = base64.b64encode(data.tostring())
@@ -314,15 +313,16 @@ class Fourier:
         image_path = os.getcwd() + '/images/'
         img_list = os.listdir(image_path)
         img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
-        dft = cv2.dft(np.float32(img),flags = cv2.DFT_COMPLEX_OUTPUT)
+        dft = cv2.dft(np.float32(img), flags=cv2.DFT_COMPLEX_OUTPUT)
         dft_shift = np.fft.fftshift(dft)
 
-        magnitude_spectrum = 20*np.log(cv2.magnitude(dft_shift[:,:,0],dft_shift[:,:,1]))
+        magnitude_spectrum = 20 * np.log(cv2.magnitude(dft_shift[:, :, 0], dft_shift[:, :, 1]))
 
         _, data = cv2.imencode('.jpg', magnitude_spectrum)
         jpeg_base64 = base64.b64encode(data.tostring())
 
         return jpeg_base64
+
 
 class DispGaussian:
     def GET(self):
@@ -330,9 +330,9 @@ class DispGaussian:
         img_list = os.listdir(image_path)
         img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
 
-        dst = cv2.GaussianBlur(img,(5,5),0)
-        for i in xrange(1,1000): # Para aplicarl filtro n veces
-            dst = cv2.GaussianBlur(dst,(5,5),0)
+        dst = cv2.GaussianBlur(img, (5, 5), 0)
+        for i in xrange(1, 1000):  # Para aplicarl filtro n veces
+            dst = cv2.GaussianBlur(dst, (5, 5), 0)
 
         _, data = cv2.imencode('.jpg', dst)
         jpeg_base64 = base64.b64encode(data.tostring())
@@ -352,6 +352,7 @@ class Border:
         jpeg_base64 = base64.b64encode(data.tostring())
 
         return jpeg_base64
+
 
 class Test:
     def GET(self):
