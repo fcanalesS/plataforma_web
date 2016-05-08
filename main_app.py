@@ -8,10 +8,6 @@ comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
 size = comm.Get_size()
 
-def test():
-    print rank
-    print size
-
 
 
 urls = (
@@ -66,7 +62,6 @@ app.add_processor(web.loadhook(variables_globales))
 class SubirImagen:
     def GET(self):
         filedir = os.getcwd() + '/images'
-        test()
 
         return htmlout.subir_imagen()
 
@@ -131,14 +126,14 @@ class Enhanced:
             print "SIZE: ", size
             print "RANK: ", rank
             region = img[(alt / size) * rank:(alt / size) * (rank + 1), 0:ancho]
-            # res_bgr = efectos1.Enhanced(region)
+            res_bgr = efectos1.Enhanced(region)
             cv2.imwrite(image_path + 'regionEditada_' + str(rank) + '.jpg', region)
 
-            #_, data = cv2.imencode('.jpg', res_bgr)
-            #jpeg_base64 = base64.b64encode(data.tostring())
+            _, data = cv2.imencode('.jpg', res_bgr)
+            jpeg_base64 = base64.b64encode(data.tostring())
 
             # Tomar tiempo hasta aquí
-            #return jpeg_base64
+            return jpeg_base64
 
 
 class Negative:
@@ -364,7 +359,7 @@ class Test_ajax:
         print web.input()
 
 
-if __name__ == '__main__':
+if __name__ == '__main__' and rank == 0:
     app.run()
 else:
     application = app.wsgifunc()
