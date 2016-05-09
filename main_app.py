@@ -1,8 +1,11 @@
 # coding=utf-8
 import base64
 from mpi4py import MPI
-import web, os, sys, cv2, numpy as np
-import efectos1
+
+import cv2
+import numpy as np
+import os
+import web
 
 comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
@@ -62,7 +65,6 @@ app.add_processor(web.loadhook(variables_globales))
 class SubirImagen:
     def GET(self):
         filedir = os.getcwd() + '/images'
-
         return htmlout.subir_imagen()
 
     def POST(self):
@@ -113,27 +115,27 @@ class EditarImagen3:
 
 class Enhanced:
     def GET(self):
+        ######
+        os.system('mpiexec -np 4 python efectos1.py')
+        ######
+
         image_path = os.getcwd() + '/images/'
         img_list = os.listdir(image_path)
         img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
-        alt, ancho, channel = img.shape
-        rank = comm.Get_rank()
-        size = comm.Get_size()
 
-        if alt < size:
-            raise web.redirect('/editar-imagen')
-        else:
-            print "SIZE: ", size
-            print "RANK: ", rank
-            region = img[(alt / size) * rank:(alt / size) * (rank + 1), 0:ancho]
-            res_bgr = efectos1.Enhanced(region)
-            cv2.imwrite(image_path + 'regionEditada_' + str(rank) + '.jpg', region)
+        b, g, r = cv2.split(img)
 
-            _, data = cv2.imencode('.jpg', res_bgr)
-            jpeg_base64 = base64.b64encode(data.tostring())
+        equb = cv2.equalizeHist(b)
+        equg = cv2.equalizeHist(g)
+        equr = cv2.equalizeHist(r)
 
-            # Tomar tiempo hasta aquí
-            return jpeg_base64
+        res_bgr = cv2.merge((equb, equg, equr))
+
+        _, data = cv2.imencode('.jpg', res_bgr)
+        jpeg_base64 = base64.b64encode(data.tostring())
+
+        # Tomar tiempo hasta aquí
+        return jpeg_base64
 
 
 class Negative:
