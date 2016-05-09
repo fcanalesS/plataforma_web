@@ -153,17 +153,9 @@ class Sepia:
         image_path = os.getcwd() + '/images/'
         img_list = os.listdir(image_path)
         img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
-
-        kernel = np.array(
-            ([0.272, 0.543, 0.131],
-             [0.349, 0.686, 0.168],
-             [0.393, 0.769, 0.189])
-        )
-
-        result = cv2.transform(img, kernel)
-
-        _, data = cv2.imencode('.jpg', result)
+        _, data = cv2.imencode('.jpg', img)
         jpeg_base64 = base64.b64encode(data.tostring())
+
         return jpeg_base64
 
 
