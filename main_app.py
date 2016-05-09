@@ -132,19 +132,24 @@ class Enhanced:
 
 class Negative:
     def GET(self):
+        ######
+        os.system('mpiexec -np 4 python negativo.py')
+        # os.system('mpiexec -np 4 python negativo2.py')
+        ######
         image_path = os.getcwd() + '/images/'
         img_list = os.listdir(image_path)
         img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
-
-        result = abs(255 - img)
-
-        _, data = cv2.imencode('.jpg', result)
+        _, data = cv2.imencode('.jpg', img)
         jpeg_base64 = base64.b64encode(data.tostring())
         return jpeg_base64
 
 
 class Sepia:
     def GET(self):
+        ######
+        os.system('mpiexec -np 4 python sepia.py')
+        # os.system('mpiexec -np 4 python sepia2.py')
+        ######
         image_path = os.getcwd() + '/images/'
         img_list = os.listdir(image_path)
         img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
