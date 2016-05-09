@@ -116,25 +116,17 @@ class EditarImagen3:
 class Enhanced:
     def GET(self):
         ######
-        os.system('mpiexec -np 4 python efectos1.py')
+        os.system('mpiexec -np 4 python automejora.py')  # Corta y aplica efecto
+        # os.system('mpiexec -np 4 python automejora2.py') # Pega y borra fotos restantes
         ######
 
         image_path = os.getcwd() + '/images/'
         img_list = os.listdir(image_path)
         img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
 
-        b, g, r = cv2.split(img)
-
-        equb = cv2.equalizeHist(b)
-        equg = cv2.equalizeHist(g)
-        equr = cv2.equalizeHist(r)
-
-        res_bgr = cv2.merge((equb, equg, equr))
-
-        _, data = cv2.imencode('.jpg', res_bgr)
+        _, data = cv2.imencode('.jpg', img)
         jpeg_base64 = base64.b64encode(data.tostring())
 
-        # Tomar tiempo hasta aquí
         return jpeg_base64
 
 
