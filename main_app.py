@@ -165,18 +165,17 @@ class BGR:
         green = (float(web.input().green) + 100) / 100
         red = (float(web.input().red) + 100) / 100
 
+        ######
+        os.system('mpiexec -np 4 python bgr.py %s %s %s' % (blue, green, red))
+        # os.system('mpiexec -np 4 python bgr.py') # Limpiar imagenes bgr :D
+        ######
+
         image_path = os.getcwd() + '/images/'
         img_list = os.listdir(image_path)
         img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
 
-        b, g, r = cv2.split(img)
 
-        b = cv2.multiply(b, np.array([blue]))
-        g = cv2.multiply(g, np.array([green]))
-        r = cv2.multiply(r, np.array([red]))
-
-        res = cv2.merge((b, g, r))
-        _, data = cv2.imencode('.jpg', res)
+        _, data = cv2.imencode('.jpg', img)
         jpeg_base64 = base64.b64encode(data.tostring())
         return jpeg_base64
 
