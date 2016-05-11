@@ -24,7 +24,6 @@
     });
 
     jQuery("#eq > span").each(function (i) {
-        // read initial values from markup and remove that
         var value = parseInt(jQuery(this).text(), 3);
         jQuery(this).empty().slider({
             value: value,
@@ -47,7 +46,11 @@
                 jQuery.ajax({
                     method: 'get',
                     url: '/bgr',
-                    data: {blue: jQuery('#blue').val(), green: jQuery('#green').val(), red: jQuery('#red').val()}
+                    data: {
+                        blue: jQuery('#blue').val(),
+                        green: jQuery('#green').val(),
+                        red: jQuery('#red').val()
+                    }
                 }).success(function (result) {
                     document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:images/jpeg;base64,' + result + '">'
                     //document.getElementById('imagen').innerHTML= 'asdasdasd'
@@ -57,7 +60,6 @@
     });
 
     jQuery("#eq2 > span").each(function (i) {
-        // read initial values from markup and remove that
         var value = parseInt(jQuery(this).text(), 3);
         jQuery(this).empty().slider({
             value: value,

@@ -185,18 +185,16 @@ class BrilloContraste:
         brillo = (float(web.input().brillo) + 100) / 100
         contraste = (float(web.input().contraste) + 100) / 100
 
+        ######
+        os.system('mpiexec -np 4 python bc.py %s %s' % (brillo, contraste))
+        # os.system('mpiexec -np 4 python bc.py')  # limpiar imágenes y dejar la buena
+        ######
+
         image_path = os.getcwd() + '/images/'
         img_list = os.listdir(image_path)
         img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
-        img2hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-        h, s, v = cv2.split(img2hsv)
 
-        s = cv2.multiply(s, np.array([contraste]))
-        v = cv2.multiply(v, np.array([brillo]))
-
-        res = cv2.merge((h, s, v))
-
-        _, data = cv2.imencode('.jpg', cv2.cvtColor(res, cv2.COLOR_HSV2BGR))
+        _, data = cv2.imencode('.jpg', img)
         jpeg_base64 = base64.b64encode(data.tostring())
 
         return jpeg_base64
@@ -208,11 +206,13 @@ class Rotate:
         img_list = os.listdir(image_path)
         img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
         angle = float(web.input().angle)
-        rows, cols, _ = img.shape
-        M = cv2.getRotationMatrix2D((cols / 2, rows / 2), angle, 1)
-        dst = cv2.warpAffine(img, M, (cols, rows))
 
-        _, data = cv2.imencode('.jpg', dst)
+        ######
+        os.system('mpiexec -np 4 python rotar.py %s' % angle)
+        # os.system('mpiexec -np 4 python rotar.py %s' % angle)  # Limpieza
+        ######
+
+        _, data = cv2.imencode('.jpg', img)
         jpeg_base64 = base64.b64encode(data.tostring())
 
         return jpeg_base64
@@ -224,9 +224,12 @@ class Mirror:
         img_list = os.listdir(image_path)
         img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
 
-        mirror = cv2.flip(img, 1)
+        ######
+        os.system('mpiexec -np 4 python espejo.py')
+        # os.system('mpiexec -np 4 python espejo.py')  # Limpieza
+        ######
 
-        _, data = cv2.imencode('.jpg', mirror)
+        _, data = cv2.imencode('.jpg', img)
         jpeg_base64 = base64.b64encode(data.tostring())
 
         return jpeg_base64
@@ -235,14 +238,16 @@ class Mirror:
 class Blur:
     def GET(self):
         blur = int(web.input().blur)
+        ######
+        os.system('mpiexec -np 4 python blur.py %s' % blur)
+        # os.system('mpiexec -np 4 python espejo.py')  #Limpieza
+        ######
 
         image_path = os.getcwd() + '/images/'
         img_list = os.listdir(image_path)
         img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
 
-        output = cv2.blur(img, (blur, blur))
-
-        _, data = cv2.imencode('.jpg', output)
+        _, data = cv2.imencode('.jpg', img)
         jpeg_base64 = base64.b64encode(data.tostring())
 
         return jpeg_base64
