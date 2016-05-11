@@ -257,27 +257,16 @@ class Sharp:
     def GET(self):
         sharp = int(web.input().sharp)
 
+        ######
+        os.system('mpiexec -np 4 python sharp.py %s' % sharp)
+        # os.system('mpiexec -np 4 python sharp.py %s' % sharp)  # Limpieza
+        ######
+
         image_path = os.getcwd() + '/images/'
         img_list = os.listdir(image_path)
         img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
 
-        # Create the identity filter, but with the 1 shifted to the right!
-        kernel = np.zeros((sharp, sharp), np.float32)
-        kernel[sharp - 1, sharp - 1] = 2.0  # Identity, times two!
-
-        # Create a box filter:
-        boxFilter = np.ones((sharp, sharp), np.float32) / float(pow(sharp, 2))
-
-        # Subtract the two:
-        kernel = kernel - boxFilter
-
-        # Note that we are subject to overflow and underflow here...but I believe that
-        # filter2D clips top and bottom ranges on the output, plus you'd need a
-        # very bright or very dark pixel surrounded by the opposite type.
-
-        custom = cv2.filter2D(img, -1, kernel)
-
-        _, data = cv2.imencode('.jpg', custom)
+        _, data = cv2.imencode('.jpg', img)
         jpeg_base64 = base64.b64encode(data.tostring())
 
         return jpeg_base64
@@ -285,20 +274,22 @@ class Sharp:
 
 class Convolucion:
     def GET(self):
+        ######
+        os.system('mpiexec -np 4 python convolucion.py')
+        # os.system('mpiexec -np 4 python sharp.py %s' % sharp)  # Limpieza
+        ######
+
         image_path = os.getcwd() + '/images/'
         img_list = os.listdir(image_path)
-        img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
+        img = cv2.imread(image_path + 'regionConvolucion.jpg', cv2.IMREAD_COLOR)
 
-        kernel = np.ones((5, 5), np.float32) / 25
-        dst = cv2.filter2D(img, -1, kernel)
-
-        _, data = cv2.imencode('.jpg', dst)
+        _, data = cv2.imencode('.jpg', img)
         jpeg_base64 = base64.b64encode(data.tostring())
 
         return jpeg_base64
 
 
-class Fourier:
+class Fourier:  # Pendiente
     def GET(self):
         image_path = os.getcwd() + '/images/'
         img_list = os.listdir(image_path)
@@ -314,7 +305,7 @@ class Fourier:
         return jpeg_base64
 
 
-class DispGaussian:
+class DispGaussian: # Pendiente
     def GET(self):
         image_path = os.getcwd() + '/images/'
         img_list = os.listdir(image_path)
@@ -332,13 +323,14 @@ class DispGaussian:
 
 class Border:
     def GET(self):
+        ######
+        os.system('mpiexec -np 4 python border.py %s %s' % (int(web.input().val1), int(web.input().val2)))
+        ######
         image_path = os.getcwd() + '/images/'
         img_list = os.listdir(image_path)
-        img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
+        img = cv2.imread(image_path + 'regionBorder.jpg', cv2.IMREAD_COLOR)
 
-        edges = cv2.Canny(img, int(web.input().val1), int(web.input().val2))
-
-        _, data = cv2.imencode('.jpg', edges)
+        _, data = cv2.imencode('.jpg', img)
         jpeg_base64 = base64.b64encode(data.tostring())
 
         return jpeg_base64
