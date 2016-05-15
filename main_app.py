@@ -5,6 +5,8 @@ from mpi4py import MPI
 import cv2
 import numpy as np
 import os
+
+import time
 import web
 
 comm = MPI.COMM_WORLD
@@ -117,12 +119,13 @@ class Enhanced:
     def GET(self):
         ######
         os.system('mpiexec -np 4 python automejora.py')  # Corta y aplica efecto
-        # os.system('mpiexec -np 4 python automejora2.py') # Pega y borra fotos restantes
+        os.system('python limpieza.py')  # Pega y borra fotos restantes
+        ########################################################################
+
         ######
 
         image_path = os.getcwd() + '/images/'
-        img_list = os.listdir(image_path)
-        img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
+        img = cv2.imread(image_path + 'imagenLista.jpg', cv2.IMREAD_COLOR)
 
         _, data = cv2.imencode('.jpg', img)
         jpeg_base64 = base64.b64encode(data.tostring())
@@ -136,6 +139,7 @@ class Negative:
         os.system('mpiexec -np 4 python negativo.py')
         # os.system('mpiexec -np 4 python negativo2.py')
         ######
+
         image_path = os.getcwd() + '/images/'
         img_list = os.listdir(image_path)
         img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)

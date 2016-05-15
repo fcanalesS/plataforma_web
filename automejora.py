@@ -6,6 +6,7 @@ comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
 size = comm.Get_size()
 
+
 def automejora(img):
     b, g, r = cv2.split(img)
 
