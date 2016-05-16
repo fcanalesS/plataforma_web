@@ -19,5 +19,14 @@ alt, ancho, canales = img.shape
 if alt < size:
     print "Imagen muy pequena"
 else:
-    regionEditada = blur(img)
-    cv2.imwrite(image_path + "regionEditada2_.jpg", regionEditada)
+    if rank == 0:
+        region = img[(alt / size) * rank:(alt / size) * (rank + 1) + 25, 0:ancho]
+    else:
+        region = img[(alt / size) * rank - 25:(alt / size) * (rank + 1) + 25, 0:ancho]
+    regionEditada = blur(region)
+    alt, ancho, canales = regionEditada.shape
+    if rank == 0:
+        regionEditada = regionEditada[0:alt - 25, 0:ancho]
+    else:
+        regionEditada = regionEditada[25:alt - 25, 0:ancho]
+    cv2.imwrite(os.getcwd() + '/images/regionEditada_' + str(rank) + ".jpg", regionEditada)

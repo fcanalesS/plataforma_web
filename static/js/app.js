@@ -1,90 +1,99 @@
-    jQuery('#go-back').click(function () {
-        document.reload()
+jQuery('#go-back').click(function () {
+    document.reload()
+});
+
+jQuery('#enhanced').click(function () {
+    jQuery.get('/enhanced', function (result) {
+        document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:images/jpeg;base64,' + result + '">'
+        //document.write(result)
+    })
+});
+
+jQuery('#negative').click(function () {
+    jQuery.get('/negative', function (result) {
+        document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:images/jpeg;base64,' + result + '">'
+        //document.write(result)
+    })
+});
+
+jQuery('#sepia').click(function () {
+    jQuery.get('/sepia', function (result) {
+        document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:images/jpeg;base64,' + result + '">'
+        //document.write(result)
+    })
+});
+
+
+function setBGR() {
+    jQuery('#blueInp').val(sliders[0].noUiSlider.get());
+    jQuery('#greenInp').val(sliders[1].noUiSlider.get());
+    jQuery('#redInp').val(sliders[2].noUiSlider.get());
+}
+var sliders = document.getElementsByClassName('sliders');
+
+for (var i = 0; i < sliders.length; i++) {
+
+    noUiSlider.create(sliders[i], {
+        start: 0,
+        step: 1,
+        connect: "lower",
+        orientation: "horizontal",
+        range: {
+            'min': -100,
+            'max': 100
+        }
     });
+    // Bind the color changing function
+    // to the slide event.
+    sliders[i].noUiSlider.on('slide', setBGR)
+}
 
-    jQuery('#enhanced').click(function () {
-        jQuery.get('/enhanced', function (result) {
-            document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:images/jpeg;base64,' + result + '">'
-            //document.write(result)
-        })
+jQuery('#btn-bgr').on('click', function () {
+    jQuery.ajax({
+        method: 'get',
+        url: '/bgr',
+        data: {
+            blue: jQuery('#blueInp').val(),
+            green: jQuery('#greenInp').val(),
+            red: jQuery('#redInp').val()
+        }
+    }).success(function (result) {
+        document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:images/jpeg;base64,' + result + '">'
+        //document.getElementById('imagen').innerHTML= 'asdasdasd'
+    })
+});
+
+function setBC() {
+    jQuery('#brightInp').val(sliders2[0].noUiSlider.get());
+    jQuery('#contrastInp').val(sliders2[1].noUiSlider.get());
+
+}
+var sliders2 = document.getElementsByClassName('sliders2');
+
+for (var i = 0; i < sliders2.length; i++) {
+
+    noUiSlider.create(sliders2[i], {
+        start: 0,
+        step: 1,
+        connect: "lower",
+        orientation: "horizontal",
+        range: {
+            'min': -100,
+            'max': 100
+        }
     });
+    sliders2[i].noUiSlider.on('slide', setBC)
+}
 
-    jQuery('#negative').click(function () {
-        jQuery.get('/negative', function (result) {
-            document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:images/jpeg;base64,' + result + '">'
-            //document.write(result)
-        })
-    });
-
-    jQuery('#sepia').click(function () {
-        jQuery.get('/sepia', function (result) {
-            document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:images/jpeg;base64,' + result + '">'
-            //document.write(result)
-        })
-    });
-
-    jQuery("#eq > span").each(function (i) {
-        var value = parseInt(jQuery(this).text(), 3);
-        jQuery(this).empty().slider({
-            value: value,
-            range: 'max',
-            min: -100,
-            max: 100,
-            animate: true,
-            orientation: "vertical",
-            slide: function (event, ui){
-                if (i==0){
-                    jQuery('#blue').val(ui.value)
-                }
-                if (i==1){
-                    jQuery('#green').val(ui.value)
-                }
-                if (i==2){
-                    jQuery('#red').val(ui.value)
-                }
-
-                jQuery.ajax({
-                    method: 'get',
-                    url: '/bgr',
-                    data: {
-                        blue: jQuery('#blue').val(),
-                        green: jQuery('#green').val(),
-                        red: jQuery('#red').val()
-                    }
-                }).success(function (result) {
-                    document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:images/jpeg;base64,' + result + '">'
-                    //document.getElementById('imagen').innerHTML= 'asdasdasd'
-                })
-            }
-        });
-    });
-
-    jQuery("#eq2 > span").each(function (i) {
-        var value = parseInt(jQuery(this).text(), 3);
-        jQuery(this).empty().slider({
-            value: value,
-            range: 'max',
-            min: -100,
-            max: 100,
-            animate: true,
-            orientation: "vertical",
-            slide: function (event, ui){
-                if (i==0){
-                    jQuery('#bright').val(ui.value)
-                }
-                if (i==1){
-                    jQuery('#contrast').val(ui.value)
-                }
-
-                jQuery.ajax({
-                    method: 'get',
-                    url: '/brillo-contraste',
-                    data: {brillo: jQuery('#bright').val(), contraste: jQuery('#contrast').val()}
-                }).success(function (result) {
-                    document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:images/jpeg;base64,' + result + '">'
-                    //document.getElementById('imagen').innerHTML= 'asdasdasd'
-
-                })
-            }
-        });
-    });
+jQuery('#btn-bc').on('click', function () {
+    jQuery.ajax({
+        method: 'get',
+        url: '/brillo-contraste',
+        data: {
+            brillo: jQuery('#brightInp').val(),
+            contraste: jQuery('#contrastInp').val()
+        }
+    }).success(function (result) {
+        document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:images/jpeg;base64,' + result + '">'
+    })
+});

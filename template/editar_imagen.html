@@ -7,33 +7,38 @@ $var title = 'Abrir imágen'
             <div class="wrapper-tools">
                 <h5>Efectos de imágen</h5>
                 <div class="divider"></div>
-                <button class="btn btn-default" style="width: auto;" id="enhanced"><span></span>Auto corrección</button>
-                <button class="btn btn-default" style="width: auto;" id="negative">Negativo</button>
-                <button class="btn btn-default" id="sepia">Sepia</button>
+                <button class="btn btn-default center-block" style="width: auto;" id="enhanced"><span></span>Auto corrección</button>
+                <button class="btn btn-default center-block" style="width: auto;" id="negative">Negativo</button>
+                <button class="btn btn-default center-block" id="sepia">Sepia</button>
             </div>
             <div class="wrapper-tools" style="height: 19em; margin-top: 10px">
                 <h5>Controles BGR</h5>
                 <div class="divider"></div>
-                <div id="eq">
-                    <span>0</span>
-                    <span>0</span>
-                    <span>0</span>
+                <div id="bgr">
+                    <div class="sliders" id="blue"></div>
+                    <br>
+                    <div class="sliders" id="green"></div>
+                    <br>
+                    <div class="sliders" id="red"></div>
+                    <br>
                 </div>
-                <input type="text" id="blue" value="0" hidden>
-                <input type="text" id="green" value="0" hidden>
-                <input type="text" id="red" value="0" hidden>
-                <button class="btn btn-default center-block" id="btn-bgr" value="OK-bgr">Aceptar</button>
+                <input type="text" id="blueInp" hidden>
+                <input type="text" id="greenInp" hidden>
+                <input type="text" id="redInp" hidden>
+                <button type="submit" class="btn btn-default center-block" id="btn-bgr">Aceptar</button>
             </div>
             <div class="wrapper-tools" style="height: 19em; margin-top: 10px">
                 <h5>Brillo / Contraste</h5>
                 <div class="divider"></div>
-                <div id="eq2">
-                    <span>0</span>
-                    <span>0</span>
+                <div id="bc">
+                    <div class="sliders2" id="brillo"></div>
+                    <br>
+                    <div class="sliders2" id="contraste"></div>
+                    <br>
                 </div>
-                <input type="text" id="bright" value="0" hidden>
-                <input type="text" id="contrast" value="0" hidden>
-                <button class="btn btn-default center-block" id="btn-accept2">Aceptar</button>
+                <input type="text" id="brightInp" hidden>
+                <input type="text" id="contrastInp" hidden>
+                <button class="btn btn-default center-block" id="btn-bc">Aceptar</button>
             </div>
         </div>
         <div class="col-md-10">

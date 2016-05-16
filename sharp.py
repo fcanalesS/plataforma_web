@@ -11,15 +11,9 @@ def sharp(img):
     kernel = np.zeros((int(sys.argv[1]), int(sys.argv[1])), np.float32)
     kernel[int(sys.argv[1]) - 1, int(sys.argv[1]) - 1] = 2.0
 
-    # Create a box filter:
     boxFilter = np.ones((int(sys.argv[1]), int(sys.argv[1])), np.float32) / float(pow(int(sys.argv[1]), 2))
 
-    # Subtract the two:
     kernel = kernel - boxFilter
-
-    # Note that we are subject to overflow and underflow here...but I believe that
-    # filter2D clips top and bottom ranges on the output, plus you'd need a
-    # very bright or very dark pixel surrounded by the opposite type.
 
     custom = cv2.filter2D(img, -1, kernel)
 
@@ -32,5 +26,14 @@ alt, ancho, canales = img.shape
 if alt < size:
     print "Imagen muy pequena"
 else:
-    regionEditada = sharp(img)
-    cv2.imwrite(image_path + "regionEditada2_.jpg", regionEditada)
+    if rank == 0:
+        region = img[(alt / size) * rank:(alt / size) * (rank + 1) + 25, 0:ancho]
+    else:
+        region = img[(alt / size) * rank - 25:(alt / size) * (rank + 1) + 25, 0:ancho]
+    regionEditada = sharp(region)
+    alt, ancho, canales = regionEditada.shape
+    if rank == 0:
+        regionEditada = regionEditada[0:alt - 25, 0:ancho]
+    else:
+        regionEditada = regionEditada[25:alt - 25, 0:ancho]
+    cv2.imwrite(os.getcwd() + '/images/regionEditada_' + str(rank) + ".jpg", regionEditada)

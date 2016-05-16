@@ -6,14 +6,9 @@ import cv2
 import numpy as np
 import os
 
-import time
 import web
 
-comm = MPI.COMM_WORLD
-rank = comm.Get_rank()
-size = comm.Get_size()
-
-
+p = 4
 
 urls = (
     '/', 'SubirImagen',
@@ -118,14 +113,14 @@ class EditarImagen3:
 class Enhanced:
     def GET(self):
         ######
-        os.system('mpiexec -np 4 python automejora.py')  # Corta y aplica efecto
-        os.system('python limpieza.py')  # Pega y borra fotos restantes
+        os.system('mpiexec -np %s python automejora.py' % p)  # Corta y aplica efecto
+        os.system('mpiexec -np %s python limpieza.py' % p)  # Pega y borra fotos restantes
         ########################################################################
 
         ######
 
         image_path = os.getcwd() + '/images/'
-        img = cv2.imread(image_path + 'imagenLista.jpg', cv2.IMREAD_COLOR)
+        img = cv2.imread(image_path + 'regionEditada_0.jpg', cv2.IMREAD_COLOR)
 
         _, data = cv2.imencode('.jpg', img)
         jpeg_base64 = base64.b64encode(data.tostring())
@@ -136,13 +131,13 @@ class Enhanced:
 class Negative:
     def GET(self):
         ######
-        os.system('mpiexec -np 4 python negativo.py')
-        # os.system('mpiexec -np 4 python negativo2.py')
+        os.system('mpiexec -np %s python negativo.py' % p)
+        os.system('mpiexec -np %s python limpieza.py' % p)  # Pega y borra fotos restantes
         ######
 
         image_path = os.getcwd() + '/images/'
         img_list = os.listdir(image_path)
-        img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
+        img = cv2.imread(image_path + 'regionEditada_0.jpg', cv2.IMREAD_COLOR)
         _, data = cv2.imencode('.jpg', img)
         jpeg_base64 = base64.b64encode(data.tostring())
         return jpeg_base64
@@ -151,12 +146,12 @@ class Negative:
 class Sepia:
     def GET(self):
         ######
-        os.system('mpiexec -np 4 python sepia.py')
-        # os.system('mpiexec -np 4 python sepia2.py')
+        os.system('mpiexec -np %s python sepia.py' % p)
+        os.system('mpiexec -np %s python limpieza.py' % p)  # Pega y borra fotos restantes
         ######
         image_path = os.getcwd() + '/images/'
         img_list = os.listdir(image_path)
-        img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
+        img = cv2.imread(image_path + 'regionEditada_0.jpg', cv2.IMREAD_COLOR)
         _, data = cv2.imencode('.jpg', img)
         jpeg_base64 = base64.b64encode(data.tostring())
 
@@ -170,14 +165,13 @@ class BGR:
         red = (float(web.input().red) + 100) / 100
 
         ######
-        os.system('mpiexec -np 4 python bgr.py %s %s %s' % (blue, green, red))
-        # os.system('mpiexec -np 4 python bgr.py') # Limpiar imagenes bgr :D
+        os.system('mpiexec -np %s python bgr.py %s %s %s' % (p, blue, green, red))
+        os.system('mpiexec -np %s python limpieza.py' % p)  # Pega y borra fotos restantes
         ######
 
         image_path = os.getcwd() + '/images/'
         img_list = os.listdir(image_path)
-        img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
-
+        img = cv2.imread(image_path + 'regionEditada_0.jpg', cv2.IMREAD_COLOR)
 
         _, data = cv2.imencode('.jpg', img)
         jpeg_base64 = base64.b64encode(data.tostring())
@@ -190,13 +184,13 @@ class BrilloContraste:
         contraste = (float(web.input().contraste) + 100) / 100
 
         ######
-        os.system('mpiexec -np 4 python bc.py %s %s' % (brillo, contraste))
-        # os.system('mpiexec -np 4 python bc.py')  # limpiar imágenes y dejar la buena
+        os.system('mpiexec -np %s python bc.py %s %s' % (p, brillo, contraste))
+        os.system('mpiexec -np %s python limpieza.py' % p)  # Pega y borra fotos restantes
         ######
 
         image_path = os.getcwd() + '/images/'
         img_list = os.listdir(image_path)
-        img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
+        img = cv2.imread(image_path + 'regionEditada_0.jpg', cv2.IMREAD_COLOR)
 
         _, data = cv2.imencode('.jpg', img)
         jpeg_base64 = base64.b64encode(data.tostring())
@@ -206,15 +200,14 @@ class BrilloContraste:
 
 class Rotate:
     def GET(self):
+        angle = float(web.input().angle)
+        ######
+        os.system('mpiexec -np %s python rotar.py %s' % (p, angle))
+        ######
+
         image_path = os.getcwd() + '/images/'
         img_list = os.listdir(image_path)
-        img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
-        angle = float(web.input().angle)
-
-        ######
-        os.system('mpiexec -np 4 python rotar.py %s' % angle)
-        # os.system('mpiexec -np 4 python rotar.py %s' % angle)  # Limpieza
-        ######
+        img = cv2.imread(image_path + 'regionRotada.jpg', cv2.IMREAD_COLOR)
 
         _, data = cv2.imencode('.jpg', img)
         jpeg_base64 = base64.b64encode(data.tostring())
@@ -224,14 +217,14 @@ class Rotate:
 
 class Mirror:
     def GET(self):
+        ######
+        os.system('mpiexec -np %s python espejo.py' % p)
+        os.system('mpiexec -np %s python limpieza.py' % p)  # Pega y borra fotos restantes
+        ######
+
         image_path = os.getcwd() + '/images/'
         img_list = os.listdir(image_path)
-        img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
-
-        ######
-        os.system('mpiexec -np 4 python espejo.py')
-        # os.system('mpiexec -np 4 python espejo.py')  # Limpieza
-        ######
+        img = cv2.imread(image_path + 'regionEditada_0.jpg', cv2.IMREAD_COLOR)
 
         _, data = cv2.imencode('.jpg', img)
         jpeg_base64 = base64.b64encode(data.tostring())
@@ -243,13 +236,12 @@ class Blur:
     def GET(self):
         blur = int(web.input().blur)
         ######
-        os.system('mpiexec -np 4 python blur.py %s' % blur)
-        # os.system('mpiexec -np 4 python espejo.py')  #Limpieza
+        os.system('mpiexec -np %s python blur.py %s' % (p, blur))
+        os.system('mpiexec -np %s python limpieza.py' % p)  # Pega y borra fotos restantes
         ######
 
         image_path = os.getcwd() + '/images/'
-        img_list = os.listdir(image_path)
-        img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
+        img = cv2.imread(image_path + 'regionEditada_0.jpg', cv2.IMREAD_COLOR)
 
         _, data = cv2.imencode('.jpg', img)
         jpeg_base64 = base64.b64encode(data.tostring())
@@ -262,13 +254,13 @@ class Sharp:
         sharp = int(web.input().sharp)
 
         ######
-        os.system('mpiexec -np 4 python sharp.py %s' % sharp)
-        # os.system('mpiexec -np 4 python sharp.py %s' % sharp)  # Limpieza
+        os.system('mpiexec -np %s python sharp.py %s' % (p, sharp))
+        os.system('mpiexec -np %s python limpieza.py' % p)  # Pega y borra fotos restantes
         ######
 
         image_path = os.getcwd() + '/images/'
         img_list = os.listdir(image_path)
-        img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
+        img = cv2.imread(image_path + 'regionEditada_0.jpg', cv2.IMREAD_COLOR)
 
         _, data = cv2.imencode('.jpg', img)
         jpeg_base64 = base64.b64encode(data.tostring())
@@ -279,8 +271,8 @@ class Sharp:
 class Convolucion:
     def GET(self):
         ######
-        os.system('mpiexec -np 4 python convolucion.py')
-        # os.system('mpiexec -np 4 python sharp.py %s' % sharp)  # Limpieza
+        os.system('mpiexec -np %s python convolucion.py' % p)
+        # os.system('mpiexec -np %s python sharp.py %s' % sharp)  # Limpieza
         ######
 
         image_path = os.getcwd() + '/images/'
@@ -309,7 +301,7 @@ class Fourier:  # Pendiente
         return jpeg_base64
 
 
-class DispGaussian: # Pendiente
+class DispGaussian:  # Pendiente
     def GET(self):
         image_path = os.getcwd() + '/images/'
         img_list = os.listdir(image_path)
@@ -328,7 +320,8 @@ class DispGaussian: # Pendiente
 class Border:
     def GET(self):
         ######
-        os.system('mpiexec -np 4 python border.py %s %s' % (int(web.input().val1), int(web.input().val2)))
+        os.system('mpiexec -np %s python border.py %s %s' % (p, int(web.input().val1), int(web.input().val2)))
+        os.system('mpiexec -np %s python limpieza.py' % p)  # Pega y borra fotos restantes
         ######
         image_path = os.getcwd() + '/images/'
         img_list = os.listdir(image_path)
@@ -350,7 +343,7 @@ class Test_ajax:
         print web.input()
 
 
-if __name__ == '__main__' and rank == 0:
+if __name__ == '__main__':
     app.run()
 else:
     application = app.wsgifunc()

@@ -8,6 +8,7 @@ $var title = 'Editar-imagen2'
             <div class="wrapper-tools">
                 <h5>Rotar imagen</h5>
                 <div class="divider"></div>
+                <!--<div id="rotate"></div>-->
                 <div id="rotate"></div>
             </div>
             <div class="wrapper-tools">
@@ -24,12 +25,15 @@ $var title = 'Editar-imagen2'
                 <div id="sharp"></div>
             </div>
             <div class="wrapper-tools">
-                <div id="eq4">
-                    <span>0</span>
-                    <span>0</span>
+                <div id="border">
+                    <div class="sliders3" id="brillo"></div>
+                    <br>
+                    <div class="sliders3" id="contraste"></div>
+                    <br>
                 </div>
-                <input type="text" id="bright" value="0" hidden>
-                <input type="text" id="contrast" value="0" hidden>
+                <input type="text" id="border_1" hidden>
+                <input type="text" id="border_2" hidden>
+                <button class="btn btn-default" id="btn-border">Aceptar</button>
             </div>
         </div>
         <div class="col-md-10">
