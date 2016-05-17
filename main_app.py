@@ -1,5 +1,5 @@
 # coding=utf-8
-import base64
+import base64, zipfile
 from mpi4py import MPI
 
 import cv2
@@ -15,6 +15,7 @@ urls = (
     '/editar-imagen', 'EditarImagen',
     '/editar-imagen2', 'EditarImagen2',
     '/editar-imagen3', 'EditarImagen3',
+    '/editar-imagen4', 'EditarImagen4',
     '/enhanced', 'Enhanced',
     '/negative', 'Negative',
     '/sepia', 'Sepia',
@@ -108,6 +109,36 @@ class EditarImagen3:
         jpeg_base64 = base64.b64encode(data.tostring())
 
         return htmlout.editar_imagen3(jpeg_base64)
+
+
+class EditarImagen4:
+    def GET(self):
+
+        return htmlout.editar_imagen4()
+
+    def POST(self):
+        x = web.input(images_hdr={})
+        print x['images_hdr'].filename
+        print x
+        if x.images == 'hdr':
+            filedir = os.getcwd() + '/hdr'  # change this to the directory you want to store the file in.
+            if 'images_hdr' in x:  # to check if the file-object is created
+                filepath = x.images_hdr.filename.replace('\\', '/')  # replaces the windows-style slashes with linux ones.
+                filename = filepath.split('/')[-1]  # splits the and chooses the last part (the filename with extension)
+                fout = open(filedir + '/' + filename, 'w')  # creates the file where the uploaded file should be stored
+                fout.write(x.images_hdr.file.read())  # writes the uploaded file to the newly created file.
+                fout.close()  # closes the file, upload complete.
+            raise web.notfound()
+        elif x.images == 'timelapse':
+            print 'TIMELAPSEEEE'
+        elif x.images == 'bullettime':
+            print 'BuLLET TImE'
+
+
+
+
+
+
 
 
 class Enhanced:
