@@ -8,7 +8,7 @@ import os
 
 import web
 
-p = 4
+p = 4 # procesadores a utilizar
 
 urls = (
     '/', 'SubirImagen',
@@ -16,6 +16,9 @@ urls = (
     '/editar-imagen2', 'EditarImagen2',
     '/editar-imagen3', 'EditarImagen3',
     '/editar-imagen4', 'EditarImagen4',
+    '/hdr', 'HDR',
+    '/time-lapse', 'TimeLapse',
+    '/bullet-time', 'BulletTime',
     '/enhanced', 'Enhanced',
     '/negative', 'Negative',
     '/sepia', 'Sepia',
@@ -41,6 +44,7 @@ template_dir = os.path.abspath(os.path.dirname(__file__)) + '/template'
 htmlout = web.template.render(template_dir, base='layout')
 htmlout2 = web.template.render(template_dir, base='layout2')
 render_plain = web.template.render('template/')
+global message
 message = ''
 
 
@@ -48,12 +52,6 @@ def variables_globales():
     web.config.debug = True
 
     web.template.Template.globals['render'] = render_plain
-    # web.template.Template.globals['data_bgr'] = Procesar_bgr().data_bgr
-    # web.template.Template.globals['css'] = Layout_main().main_css
-    # web.template.Template.globals['header'] = Layout_main().main_header
-    # web.template.Template.globals['footer'] = Layout_main().main_footer
-    # web.template.Template.globals['arregla_fecha'] = Layout_main().arregla_fecha
-    # web.template.Template.globals['arregla_link'] = Layout_main().arregla_link
     web.template.Template.globals['msg'] = message
 
 
@@ -113,32 +111,87 @@ class EditarImagen3:
 
 class EditarImagen4:
     def GET(self):
+        os.system('rm ' + os.getcwd() + '/static/video/' + '*.mp4')
 
         return htmlout.editar_imagen4()
 
     def POST(self):
         x = web.input(images_hdr={})
         print x['images_hdr'].filename
-        print x
         if x.images == 'hdr':
-            filedir = os.getcwd() + '/hdr'  # change this to the directory you want to store the file in.
-            if 'images_hdr' in x:  # to check if the file-object is created
-                filepath = x.images_hdr.filename.replace('\\', '/')  # replaces the windows-style slashes with linux ones.
-                filename = filepath.split('/')[-1]  # splits the and chooses the last part (the filename with extension)
-                fout = open(filedir + '/' + filename, 'w')  # creates the file where the uploaded file should be stored
-                fout.write(x.images_hdr.file.read())  # writes the uploaded file to the newly created file.
-                fout.close()  # closes the file, upload complete.
-            raise web.notfound()
+            filedir = os.getcwd() + '/hdr'
+            if 'images_hdr' in x:
+                filepath = x.images_hdr.filename.replace('\\', '/')
+                filename = filepath.split('/')[-1]
+                fout = open(filedir + '/' + filename, 'w')
+                fout.write(x.images_hdr.file.read())
+                fout.close()
+            os.system('unzip ' + filedir + '/' + x['images_hdr'].filename + ' -d ' + filedir + '/')
+            os.system('rm ' + filedir + '/' + x['images_hdr'].filename)
+            global message
+            message = 'HDR'
+            raise web.seeother('/hdr')
         elif x.images == 'timelapse':
-            print 'TIMELAPSEEEE'
+            filedir = os.getcwd() + '/timelapse'
+            if 'images_hdr' in x:
+                filepath = x.images_hdr.filename.replace('\\',
+                                                         '/')
+                filename = filepath.split('/')[-1]
+                fout = open(filedir + '/' + filename, 'w')
+                fout.write(x.images_hdr.file.read())
+                fout.close()
+            os.system('unzip ' + filedir + '/' + x['images_hdr'].filename + ' -d ' + filedir + '/')
+            os.system('rm ' + filedir + '/' + x['images_hdr'].filename)
+            raise web.seeother('/time-lapse')
         elif x.images == 'bullettime':
-            print 'BuLLET TImE'
+            filedir = os.getcwd() + '/bulletTime'
+            if 'images_hdr' in x:
+                filepath = x.images_hdr.filename.replace('\\',
+                                                         '/')
+                filename = filepath.split('/')[-1]
+                fout = open(filedir + '/' + filename, 'w')
+                fout.write(x.images_hdr.file.read())
+                fout.close()
+            os.system('unzip ' + filedir + '/' + x['images_hdr'].filename + ' -d ' + filedir + '/')
+            os.system('rm ' + filedir + '/' + x['images_hdr'].filename)
+            raise web.seeother('/bullet-time')
 
 
+class HDR:
+    def GET(self):
+        ######
+        os.system('mpiexec -np %s python hdr.py' % p)  # Corta y aplica efecto
+        # os.system('mpiexec -np %s python limpieza.py' % p)  # Pega y borra fotos restantes
+        ######
+
+        img = cv2.imread(os.getcwd() + '/hdr/hdr.jpg', cv2.IMREAD_COLOR)
+        _, data = cv2.imencode('.jpg', img)
+        jpeg_base64 = base64.b64encode(data.tostring())
+
+        return htmlout.result(jpeg_base64)
 
 
+class TimeLapse:
+    def GET(self):
+        ######
+        # os.system('mpiexec -np %s python timelapse.py' % p)  # Corta y aplica efecto
+        ######
+
+        video_path = os.getcwd() + '/static/video/hdrVideo.mp4'
+
+        return htmlout.result2(video_path)
 
 
+class BulletTime:
+    def GET(self):
+        ######
+        os.system('mpiexec -np %s python bullettime.py' % p)  # Corta y aplica efecto
+        # os.system('mpiexec -np %s python limpieza.py' % p)  # Pega y borra fotos restantes
+        ######
+
+        video_path = os.getcwd() + '/static/video/hdrVideo.mp4'
+
+        return htmlout.result3(video_path)
 
 
 class Enhanced:
@@ -146,8 +199,6 @@ class Enhanced:
         ######
         os.system('mpiexec -np %s python automejora.py' % p)  # Corta y aplica efecto
         os.system('mpiexec -np %s python limpieza.py' % p)  # Pega y borra fotos restantes
-        ########################################################################
-
         ######
 
         image_path = os.getcwd() + '/images/'

@@ -1,10 +1,24 @@
 $var title = 'Editar imagen 4'
 
-<h1>Subir imagen</h1>
-
-<form action="/editar-imagen4" method="post" enctype="multipart/form-data">
-    <input type="file" name="images_hdr">
-    <button type="submit" class="btn btn-default" value="hdr" name="images">HDR</button>
-    <button type="submit" class="btn btn-primary" value="timelapse" name="images">Time lapse</button>
-    <button type="submit" class="btn btn-warning" value="bullettime" name="images">Bullet time</button>
-</form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="wrapper-upload">
+                <h1>Seleccionar imágen: <small>Filtros especiales</small></h1>
+                <div class="divider"></div>
+                <form action="/editar-imagen4" method="post" enctype="multipart/form-data">
+                    <p>
+                        <input type="file" name="images_hdr" required>
+                    </p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-default" value="hdr" name="images">HDR</button>
+                            <button type="submit" class="btn btn-primary" value="timelapse" name="images">Time lapse</button>
+                            <button type="submit" class="btn btn-warning" value="bullettime" name="images">Bullet time</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
