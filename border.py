@@ -1,5 +1,7 @@
 import sys
 from mpi4py import MPI
+from time import time
+
 import cv2, os
 import numpy as np
 
@@ -20,5 +22,8 @@ alt, ancho, canales = img.shape
 if alt < size:
     print "Imagen muy pequena"
 else:
+    start = time()
     regionEditada = border(img)
     cv2.imwrite(image_path + "regionBorder.jpg", regionEditada)
+    elapsed = time() - start
+    print "TIEMPO BORDER: ", elapsed

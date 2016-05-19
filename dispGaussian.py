@@ -9,6 +9,13 @@ comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
 size = comm.Get_size()
 
+def convolucion(img):
+    dst = cv2.GaussianBlur(img, (5, 5), 0)
+    for i in xrange(1, 1000):  # Para aplicarl filtro n veces
+        dst = cv2.GaussianBlur(dst, (5, 5), 0)
+
+    return dst
+
 image_path = os.getcwd() + '/images/'
 img = cv2.imread(image_path + '001.jpg', cv2.IMREAD_COLOR)
 alt, ancho, canales = img.shape
@@ -17,9 +24,8 @@ if alt < size:
     print "Imagen muy pequena"
 else:
     start = time()
-    rows, cols, _ = img.shape
-    M = cv2.getRotationMatrix2D((cols / 2, rows / 2), float(sys.argv[1]), 1)
-    dst = cv2.warpAffine(img, M, (cols, rows))
-    cv2.imwrite(image_path + "regionRotada.jpg", dst)
+    regionEditada = convolucion(img)
+    cv2.imwrite(image_path + "regionDisp.jpg", regionEditada)
     elapsed = time() - start
-    print "TIEMPO SEC ROTAR: ", elapsed
+
+    print "TIEMPO DISPgaussian: ", elapsed

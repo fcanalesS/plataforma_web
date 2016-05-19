@@ -2,14 +2,44 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f36e2259-9a03-48fc-948c-581da12f9e71" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bullettime.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/result.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdr/MPI-OPENCV.zip" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/regionEditada_0.jpg" afterPath="$PROJECT_DIR$/images/regionEditada_0.jpg" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdr/000.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdr/001.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdr/002.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdr/003.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdr/004.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdr/005.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdr/006.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdr/007.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdr/hdr.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdr/timelapse.avi" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/001.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/regionBorder.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/regionEditada2_.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/regionEditada_0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/regionRotada.jpg" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/automejora.py" afterPath="$PROJECT_DIR$/automejora.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bc.py" afterPath="$PROJECT_DIR$/bc.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bgr.py" afterPath="$PROJECT_DIR$/bgr.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blur.py" afterPath="$PROJECT_DIR$/blur.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/border.py" afterPath="$PROJECT_DIR$/border.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bullettime.py" afterPath="$PROJECT_DIR$/bullettime.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/convolucion.py" afterPath="$PROJECT_DIR$/convolucion.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/espejo.py" afterPath="$PROJECT_DIR$/espejo.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdr.py" afterPath="$PROJECT_DIR$/hdr.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main_app.py" afterPath="$PROJECT_DIR$/main_app.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/negativo.py" afterPath="$PROJECT_DIR$/negativo.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rotar.py" afterPath="$PROJECT_DIR$/rotar.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sepia.py" afterPath="$PROJECT_DIR$/sepia.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sharp.py" afterPath="$PROJECT_DIR$/sharp.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/app3.js" afterPath="$PROJECT_DIR$/static/js/app3.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/editar_imagen.html" afterPath="$PROJECT_DIR$/template/editar_imagen.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/editar_imagen2.html" afterPath="$PROJECT_DIR$/template/editar_imagen2.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/editar_imagen3.html" afterPath="$PROJECT_DIR$/template/editar_imagen3.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/editar_imagen4.html" afterPath="$PROJECT_DIR$/template/editar_imagen4.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/layout.html" afterPath="$PROJECT_DIR$/template/layout.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/result2.html" afterPath="$PROJECT_DIR$/template/result2.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/subir_imagen.html" afterPath="$PROJECT_DIR$/template/subir_imagen.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/timelapse.py" afterPath="$PROJECT_DIR$/timelapse.py" />
     </list>
     <ignored path="web.iws" />
@@ -25,7 +55,7 @@
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/web$Nosetests_in_main_app__2_.coverage" NAME="Nosetests in main_app (2) Coverage Results" MODIFIED="1460563919051" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/web$main_app.coverage" NAME="main_app Coverage Results" MODIFIED="1463528717943" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/web$main_app.coverage" NAME="main_app Coverage Results" MODIFIED="1463604677506" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/web$Nosetests_in_main_app__1_.coverage" NAME="Nosetests in main_app (1) Coverage Results" MODIFIED="1460563912974" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/web$Nosetests_in_main_app.coverage" NAME="Nosetests in main_app Coverage Results" MODIFIED="1460563908904" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
@@ -48,11 +78,9 @@
       <file leaf-file-name="main_app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main_app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="756">
-              <caret line="393" column="26" selection-start-line="393" selection-start-column="26" selection-end-line="393" selection-end-column="26" />
-              <folding>
-                <element signature="e#15#37#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="360">
+              <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -60,63 +88,53 @@
       <file leaf-file-name="convolucion.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/convolucion.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="13" column="14" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
+            <state relative-caret-position="90">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bullettime.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bullettime.py">
+      <file leaf-file-name="editar_imagen.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/template/editar_imagen.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+            <state relative-caret-position="305">
+              <caret line="55" column="102" selection-start-line="55" selection-start-column="79" selection-end-line="55" selection-end-column="102" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="editar_imagen2.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/template/editar_imagen2.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="179">
+              <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="67" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="editar_imagen3.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/template/editar_imagen3.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="38" column="102" selection-start-line="38" selection-start-column="102" selection-end-line="38" selection-end-column="102" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="editar_imagen4.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/template/editar_imagen4.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="486">
+              <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
               <folding>
-                <element signature="e#0#22#0" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="timelapse.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/timelapse.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="12" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="21" selection-end-column="38" />
-              <folding>
-                <element signature="e#0#22#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="result2.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/template/result2.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="13" column="24" selection-start-line="10" selection-start-column="16" selection-end-line="13" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="result3.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/template/result3.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="automejora.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/automejora.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-192">
-              <caret line="13" column="28" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -140,38 +158,39 @@
       <list>
         <option value="$PROJECT_DIR$/template/test.html" />
         <option value="$PROJECT_DIR$/template/layout2.html" />
-        <option value="$PROJECT_DIR$/template/editar_imagen3.html" />
-        <option value="$PROJECT_DIR$/static/js/app3.js" />
         <option value="$PROJECT_DIR$/libs/efectos1.py" />
-        <option value="$PROJECT_DIR$/template/subir_imagen.html" />
         <option value="$PROJECT_DIR$/efectos1.py" />
-        <option value="$PROJECT_DIR$/convolucion.py" />
         <option value="$PROJECT_DIR$/fourier.py" />
-        <option value="$PROJECT_DIR$/automejora.py" />
         <option value="$PROJECT_DIR$/limpieza.py" />
+        <option value="$PROJECT_DIR$/static/js/app.js" />
+        <option value="$PROJECT_DIR$/static/js/app2.js" />
+        <option value="$PROJECT_DIR$/result.html" />
+        <option value="$PROJECT_DIR$/template/result.html" />
+        <option value="$PROJECT_DIR$/bulletTime.py" />
+        <option value="$PROJECT_DIR$/template/result3.html" />
+        <option value="$PROJECT_DIR$/template/layout.html" />
+        <option value="$PROJECT_DIR$/static/js/app3.js" />
+        <option value="$PROJECT_DIR$/automejora.py" />
         <option value="$PROJECT_DIR$/negativo.py" />
         <option value="$PROJECT_DIR$/sepia.py" />
         <option value="$PROJECT_DIR$/bgr.py" />
-        <option value="$PROJECT_DIR$/template/layout.html" />
-        <option value="$PROJECT_DIR$/template/editar_imagen.html" />
         <option value="$PROJECT_DIR$/bc.py" />
         <option value="$PROJECT_DIR$/rotar.py" />
         <option value="$PROJECT_DIR$/espejo.py" />
         <option value="$PROJECT_DIR$/blur.py" />
         <option value="$PROJECT_DIR$/sharp.py" />
         <option value="$PROJECT_DIR$/border.py" />
-        <option value="$PROJECT_DIR$/static/js/app.js" />
-        <option value="$PROJECT_DIR$/static/js/app2.js" />
-        <option value="$PROJECT_DIR$/template/editar_imagen2.html" />
-        <option value="$PROJECT_DIR$/result.html" />
-        <option value="$PROJECT_DIR$/template/result.html" />
+        <option value="$PROJECT_DIR$/dispGaussian.py" />
         <option value="$PROJECT_DIR$/hdr.py" />
-        <option value="$PROJECT_DIR$/template/editar_imagen4.html" />
+        <option value="$PROJECT_DIR$/bullettime.py" />
         <option value="$PROJECT_DIR$/timelapse.py" />
         <option value="$PROJECT_DIR$/template/result2.html" />
-        <option value="$PROJECT_DIR$/bulletTime.py" />
-        <option value="$PROJECT_DIR$/bullettime.py" />
-        <option value="$PROJECT_DIR$/template/result3.html" />
+        <option value="$PROJECT_DIR$/template/editar_imagen4.html" />
+        <option value="$PROJECT_DIR$/template/subir_imagen.html" />
+        <option value="$PROJECT_DIR$/template/editar_imagen.html" />
+        <option value="$PROJECT_DIR$/template/editar_imagen2.html" />
+        <option value="$PROJECT_DIR$/template/editar_imagen3.html" />
+        <option value="$PROJECT_DIR$/convolucion.py" />
         <option value="$PROJECT_DIR$/main_app.py" />
       </list>
     </option>
@@ -183,9 +202,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="24" />
-    <option name="width" value="1366" />
-    <option name="height" value="744" />
+    <option name="x" value="1385" />
+    <option name="y" value="128" />
+    <option name="width" value="1896" />
+    <option name="height" value="938" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -212,6 +232,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -240,7 +261,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
+              <option name="myItemId" value="template" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -254,14 +275,13 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
+              <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -271,7 +291,7 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="js-jscs-nodeInterpreter" value="/usr/bin/node" />
-    <property name="SearchEverywhereHistoryKey" value="melap&#9;FILE&#9;file:///home/fcanales/PycharmProjects/plataforma_web/timelapse.py&#10;main&#9;FILE&#9;file:///home/fcanales/PycharmProjects/plataforma_web/main_app.py&#10;app2&#9;FILE&#9;file:///home/fcanales/PycharmProjects/plataforma_web/static/js/app2.js" />
+    <property name="SearchEverywhereHistoryKey" value="main&#9;FILE&#9;file:///home/fcanales/PycharmProjects/plataforma_web/main_app.py&#10;melap&#9;FILE&#9;file:///home/fcanales/PycharmProjects/plataforma_web/timelapse.py&#10;app2&#9;FILE&#9;file:///home/fcanales/PycharmProjects/plataforma_web/static/js/app2.js" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -637,17 +657,17 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="24" width="1366" height="744" extended-state="6" />
+    <frame x="1385" y="128" width="1896" height="938" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25297296" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26979166" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32561728" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.325" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328125" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43055555" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20665084" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21041666" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -678,29 +698,7 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/web/wsgiserver/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="1752" column="0" selection-start-line="1752" selection-start-column="0" selection-end-line="1752" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fourier.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="7" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/unirV2.py" />
     <entry file="file://$PROJECT_DIR$/images/imagenLista.jpg" />
-    <entry file="file://$PROJECT_DIR$/negativo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="32" column="57" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/regionEditada_1.jpg" />
     <entry file="file://$PROJECT_DIR$/regionEditada_2.jpg" />
     <entry file="file://$PROJECT_DIR$/regionEditada_3.jpg" />
@@ -729,78 +727,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sepia.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="38" column="57" selection-start-line="38" selection-start-column="16" selection-end-line="38" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/template/layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-360">
-          <caret line="13" column="51" selection-start-line="13" selection-start-column="51" selection-end-line="13" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bgr.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="38" column="57" selection-start-line="38" selection-start-column="16" selection-end-line="38" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/regionEditada_0.jpg" />
     <entry file="file://$PROJECT_DIR$/images/regionEditada2_0.jpg" />
     <entry file="file://$PROJECT_DIR$/images/regionEditada2_1.jpg" />
     <entry file="file://$PROJECT_DIR$/images/regionEditada2_2.jpg" />
     <entry file="file://$PROJECT_DIR$/images/regionEditada2_3.jpg" />
-    <entry file="file://$PROJECT_DIR$/espejo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="30" column="58" selection-start-line="30" selection-start-column="58" selection-end-line="30" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rotar.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="19" column="42" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/border.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sharp.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="38" selection-end-column="91" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blur.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="28" column="11" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bc.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="43" selection-end-column="91" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1764">
@@ -815,13 +746,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template/editar_imagen.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
-          <caret line="39" column="59" selection-start-line="32" selection-start-column="16" selection-end-line="39" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/images/003.jpg" />
     <entry file="file://$PROJECT_DIR$/images/001.jpg">
       <provider selected="true" editor-type-id="images">
@@ -829,107 +753,15 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/images/100.jpg" />
-    <entry file="file://$PROJECT_DIR$/template/subir_imagen.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="17" column="10" selection-start-line="3" selection-start-column="5" selection-end-line="17" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/template/editar_imagen2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="36" column="16" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hdr/hdr.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/template/editar_imagen3.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" column="76" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/template/editar_imagen4.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="44" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hdr.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/template/result.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
           <caret line="21" column="6" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/automejora.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-192">
-          <caret line="13" column="28" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/timelapse.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="21" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/template/result2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="24" selection-start-line="10" selection-start-column="16" selection-end-line="13" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bullettime.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/template/result3.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/convolucion.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="13" column="14" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -948,13 +780,228 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/001.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/app3.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="3" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/automejora.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/negativo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="35" column="43" selection-start-line="35" selection-start-column="43" selection-end-line="35" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#22#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sepia.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="40" column="32" selection-start-line="40" selection-start-column="32" selection-end-line="40" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#22#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bgr.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="684">
+          <caret line="43" column="37" selection-start-line="43" selection-start-column="37" selection-end-line="43" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="46" column="36" selection-start-line="46" selection-start-column="36" selection-end-line="46" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rotar.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="24" column="39" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/espejo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="37" column="36" selection-start-line="37" selection-start-column="36" selection-end-line="37" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blur.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="558">
+          <caret line="36" column="32" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dispGaussian.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/timelapse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#22#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hdr.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="30" column="29" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#22#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bullettime.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="63" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="63" />
+          <folding>
+            <element signature="e#0#22#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template/result2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="155" selection-start-line="10" selection-start-column="155" selection-end-line="10" selection-end-column="155" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template/result3.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="18" column="46" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/border.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sharp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="36" column="45" selection-start-line="36" selection-start-column="45" selection-end-line="36" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template/editar_imagen4.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template/subir_imagen.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="14" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template/editar_imagen2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="67" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template/editar_imagen.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="55" column="102" selection-start-line="55" selection-start-column="79" selection-end-line="55" selection-end-column="102" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template/editar_imagen3.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="38" column="102" selection-start-line="38" selection-start-column="102" selection-end-line="38" selection-end-column="102" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/convolucion.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main_app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="393" column="26" selection-start-line="393" selection-start-column="26" selection-end-line="393" selection-end-column="26" />
-          <folding>
-            <element signature="e#15#37#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="360">
+          <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -8,14 +8,14 @@ jQuery('#convolucion').click(function () {
     });
 });
 
-jQuery('#fourier').click(function () {
-    jQuery.ajax({
-        method: 'get',
-        url: '/fourier'
-    }).success(function (result) {
-        document.getElementById('imagen').innerHTML = '<img class="img-responsive" src="data:images/jpeg;base64,' + result + '">'
-    });
+jQuery('#desconvolucion').click(function () {
+    location.reload()
 });
+
+jQuery('#fourier').click(function () {
+    alert('Modulo no implementado. ! ! !')
+});
+
 
 jQuery('#dip-gauss').click(function () {
     jQuery.ajax({

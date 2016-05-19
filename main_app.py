@@ -8,7 +8,7 @@ import os
 
 import web
 
-p = 4 # procesadores a utilizar
+p = 32  # procesadores a utilizar
 
 urls = (
     '/', 'SubirImagen',
@@ -60,7 +60,8 @@ app.add_processor(web.loadhook(variables_globales))
 
 class SubirImagen:
     def GET(self):
-        filedir = os.getcwd() + '/images'
+        os.system('rm ' + os.getcwd() + '/images/' + '*.jpg')
+
         return htmlout.subir_imagen()
 
     def POST(self):
@@ -72,6 +73,7 @@ class SubirImagen:
             fout = open(filedir + '/' + filename, 'w')  # creates the file where the uploaded file should be stored
             fout.write(x.upload_file.file.read())  # writes the uploaded file to the newly created file.
             fout.close()  # closes the file, upload complete.
+            os.system('mv ' + filedir + '/' + filename + ' ' + filedir + '/' + '001.jpg')
 
         raise web.seeother('editar-imagen')
 
@@ -112,6 +114,9 @@ class EditarImagen3:
 class EditarImagen4:
     def GET(self):
         os.system('rm ' + os.getcwd() + '/static/video/' + '*.mp4')
+        os.system('rm ' + os.getcwd() + '/hdr/' + '*.jpg')
+        os.system('rm ' + os.getcwd() + '/timelapse/' + '*.jpg')
+        os.system('rm ' + os.getcwd() + '/bulletTime/' + '*.jpg')
 
         return htmlout.editar_imagen4()
 
@@ -174,10 +179,10 @@ class HDR:
 class TimeLapse:
     def GET(self):
         ######
-        # os.system('mpiexec -np %s python timelapse.py' % p)  # Corta y aplica efecto
+        os.system('mpiexec -np %s python timelapse.py' % p)  # Corta y aplica efecto
         ######
 
-        video_path = os.getcwd() + '/static/video/hdrVideo.mp4'
+        video_path = os.getcwd() + '/static/video/timelapseVideo.mp4'
 
         return htmlout.result2(video_path)
 
@@ -189,7 +194,7 @@ class BulletTime:
         # os.system('mpiexec -np %s python limpieza.py' % p)  # Pega y borra fotos restantes
         ######
 
-        video_path = os.getcwd() + '/static/video/hdrVideo.mp4'
+        video_path = os.getcwd() + '/static/video/bulletTime.mp4'
 
         return htmlout.result3(video_path)
 
@@ -372,12 +377,12 @@ class Fourier:  # Pendiente
         image_path = os.getcwd() + '/images/'
         img_list = os.listdir(image_path)
         img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
-        dft = cv2.dft(np.float32(img), flags=cv2.DFT_COMPLEX_OUTPUT)
-        dft_shift = np.fft.fftshift(dft)
 
-        magnitude_spectrum = 20 * np.log(cv2.magnitude(dft_shift[:, :, 0], dft_shift[:, :, 1]))
+        #############################################################
+        # Not Implemented
+        #############################################################
 
-        _, data = cv2.imencode('.jpg', magnitude_spectrum)
+        _, data = cv2.imencode('.jpg', img)
         jpeg_base64 = base64.b64encode(data.tostring())
 
         return jpeg_base64
@@ -385,15 +390,15 @@ class Fourier:  # Pendiente
 
 class DispGaussian:  # Pendiente
     def GET(self):
+        ######
+        os.system('mpiexec -np %s python dispGaussian.py' % p)
+        # os.system('mpiexec -np %s python sharp.py %s' % sharp)  # Limpieza
+        ######
+
         image_path = os.getcwd() + '/images/'
-        img_list = os.listdir(image_path)
-        img = cv2.imread(image_path + img_list[0], cv2.IMREAD_COLOR)
+        img = cv2.imread(image_path + 'regionDisp.jpg', cv2.IMREAD_COLOR)
 
-        dst = cv2.GaussianBlur(img, (5, 5), 0)
-        for i in xrange(1, 1000):  # Para aplicarl filtro n veces
-            dst = cv2.GaussianBlur(dst, (5, 5), 0)
-
-        _, data = cv2.imencode('.jpg', dst)
+        _, data = cv2.imencode('.jpg', img)
         jpeg_base64 = base64.b64encode(data.tostring())
 
         return jpeg_base64

@@ -1,6 +1,6 @@
 from mpi4py import MPI
 import cv2, os
-import numpy as np
+from time import time
 
 comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
@@ -19,7 +19,7 @@ alt, ancho, canales = img.shape
 if alt < size:
     print "Imagen muy pequena"
 else:
-    # img[y:y+h, x:x+w]
+    start = time()
     if rank == 0:
         region = img[(alt / size) * rank:(alt / size) * (rank + 1) + 25, 0:ancho]
     else:
@@ -31,3 +31,6 @@ else:
     else:
         regionEditada = regionEditada[25:alt - 25, 0:ancho]
     cv2.imwrite(os.getcwd() + '/images/regionEditada_' + str(rank) + ".jpg", regionEditada)
+    elapsed_time = time() - start
+
+    print "TIEMPO SEGUNDOS: ", elapsed_time

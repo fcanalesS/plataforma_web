@@ -1,5 +1,7 @@
 import sys
 from mpi4py import MPI
+from time import time
+
 import cv2, os
 import numpy as np
 
@@ -8,7 +10,7 @@ rank = comm.Get_rank()
 size = comm.Get_size()
 
 def convolucion(img):
-    kernel = np.ones((5, 5), np.float32) / 25  # Matriz de convolucion
+    kernel = np.ones((30, 30), np.float32) / 900  # Matriz de convolucion
     dst = cv2.filter2D(img, -1, kernel)
 
     return dst
@@ -20,5 +22,11 @@ alt, ancho, canales = img.shape
 if alt < size:
     print "Imagen muy pequena"
 else:
+    start = time()  # Inicia el contador, donde se quiere medir el tiempo
+
+
     regionEditada = convolucion(img)
     cv2.imwrite(image_path + "regionConvolucion.jpg", regionEditada)
+    elapsed = time() - start  # Resta del tiempo transcurrido total y donde se inicio el contador
+
+    print "TIEMPO CONVOLUCION: ", elapsed  # Resultado final, en segundos
