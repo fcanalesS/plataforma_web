@@ -25,5 +25,3 @@ for i in img_list:
 elapsed = time() - start
 
 print "TIEMPO TIMELAPSE: ", elapsed
-
-os.system('rm ' + file_path + '*.jpg')

@@ -1,14 +1,11 @@
 # coding=utf-8
-import base64, zipfile
-from mpi4py import MPI
-
+import base64
 import cv2
-import numpy as np
 import os
 
 import web
 
-p = 32  # procesadores a utilizar
+p = 4  # procesadores a utilizar
 
 urls = (
     '/', 'SubirImagen',
@@ -47,6 +44,9 @@ render_plain = web.template.render('template/')
 global message
 message = ''
 
+global message2
+message2 = ''
+
 
 def variables_globales():
     web.config.debug = True
@@ -62,7 +62,7 @@ class SubirImagen:
     def GET(self):
         os.system('rm ' + os.getcwd() + '/images/' + '*.jpg')
 
-        return htmlout.subir_imagen()
+        return htmlout.subir_imagen(message)
 
     def POST(self):
         x = web.input(upload_file={})
@@ -70,12 +70,17 @@ class SubirImagen:
         if 'upload_file' in x:  # to check if the file-object is created
             filepath = x.upload_file.filename.replace('\\', '/')  # replaces the windows-style slashes with linux ones.
             filename = filepath.split('/')[-1]  # splits the and chooses the last part (the filename with extension)
-            fout = open(filedir + '/' + filename, 'w')  # creates the file where the uploaded file should be stored
-            fout.write(x.upload_file.file.read())  # writes the uploaded file to the newly created file.
-            fout.close()  # closes the file, upload complete.
-            os.system('mv ' + filedir + '/' + filename + ' ' + filedir + '/' + '001.jpg')
-
-        raise web.seeother('editar-imagen')
+            if filename.split('.')[-1] == 'jpg' or filename.split('.')[-1] == 'png':
+                filename1 = '001.jpg'
+                fout = open(filedir + '/' + filename1, 'w')  # creates the file where the uploaded file should be stored
+                fout.write(x.upload_file.file.read())  # writes the uploaded file to the newly created file.
+                fout.close()  # closes the file, upload complete.
+                os.system('mv ' + filedir + '/' + filename1 + ' ' + filedir + '/' + '001.jpg')
+                raise web.seeother('editar-imagen')
+            else:
+                global message
+                message = 'No se acepta este tipo de archivos, intente nuevamente ! ! !'
+                raise web.seeother('/')
 
 
 class EditarImagen:
@@ -118,7 +123,7 @@ class EditarImagen4:
         os.system('rm ' + os.getcwd() + '/timelapse/' + '*.jpg')
         os.system('rm ' + os.getcwd() + '/bulletTime/' + '*.jpg')
 
-        return htmlout.editar_imagen4()
+        return htmlout.editar_imagen4(message2)
 
     def POST(self):
         x = web.input(images_hdr={})
@@ -133,14 +138,11 @@ class EditarImagen4:
                 fout.close()
             os.system('unzip ' + filedir + '/' + x['images_hdr'].filename + ' -d ' + filedir + '/')
             os.system('rm ' + filedir + '/' + x['images_hdr'].filename)
-            global message
-            message = 'HDR'
             raise web.seeother('/hdr')
         elif x.images == 'timelapse':
             filedir = os.getcwd() + '/timelapse'
             if 'images_hdr' in x:
-                filepath = x.images_hdr.filename.replace('\\',
-                                                         '/')
+                filepath = x.images_hdr.filename.replace('\\', '/')
                 filename = filepath.split('/')[-1]
                 fout = open(filedir + '/' + filename, 'w')
                 fout.write(x.images_hdr.file.read())
@@ -151,8 +153,7 @@ class EditarImagen4:
         elif x.images == 'bullettime':
             filedir = os.getcwd() + '/bulletTime'
             if 'images_hdr' in x:
-                filepath = x.images_hdr.filename.replace('\\',
-                                                         '/')
+                filepath = x.images_hdr.filename.replace('\\', '/')
                 filename = filepath.split('/')[-1]
                 fout = open(filedir + '/' + filename, 'w')
                 fout.write(x.images_hdr.file.read())
@@ -164,6 +165,23 @@ class EditarImagen4:
 
 class HDR:
     def GET(self):
+        filepath = os.getcwd() + '/hdr/'
+        img_list = os.listdir(filepath)
+        img = cv2.imread(filepath + img_list[0], cv2.IMREAD_COLOR)
+        alt, ancho, canales = img.shape
+        for i in range(1, len(img_list)):
+            img_aux = cv2.imread(filepath + img_list[i], cv2.IMREAD_COLOR)
+            aux_alt, aux_ancho, _ = img_aux.shape
+            if alt == aux_alt and ancho == aux_ancho:
+                pass
+                if img_list[0].split('.')[-1] == img_list[i].split('.')[-1]:
+                    pass
+            else:
+                global message2
+                message2 = 'Las imágenes no tienen las mismas dimensiones. No se puede procesar'
+                raise web.seeother('/editar-imagen4')
+
+
         ######
         os.system('mpiexec -np %s python hdr.py' % p)  # Corta y aplica efecto
         # os.system('mpiexec -np %s python limpieza.py' % p)  # Pega y borra fotos restantes
@@ -178,6 +196,22 @@ class HDR:
 
 class TimeLapse:
     def GET(self):
+        filepath = os.getcwd() + '/timelapse/'
+        img_list = os.listdir(filepath)
+        img = cv2.imread(filepath + img_list[0], cv2.IMREAD_COLOR)
+        alt, ancho, canales = img.shape
+        for i in range(1, len(img_list)):
+            img_aux = cv2.imread(filepath + img_list[i], cv2.IMREAD_COLOR)
+            aux_alt, aux_ancho, _ = img_aux.shape
+            if alt == aux_alt and ancho == aux_ancho:
+                pass
+                if img_list[0].split('.')[-1] == img_list[i].split('.')[-1]:
+                    pass
+            else:
+                global message2
+                message2 = 'Las imágenes no tienen las mismas dimensiones. No se puede procesar'
+                raise web.seeother('/editar-imagen4')
+
         ######
         os.system('mpiexec -np %s python timelapse.py' % p)  # Corta y aplica efecto
         ######
@@ -189,6 +223,21 @@ class TimeLapse:
 
 class BulletTime:
     def GET(self):
+        filepath = os.getcwd() + '/bulletTime/'
+        img_list = os.listdir(filepath)
+        img = cv2.imread(filepath + img_list[0], cv2.IMREAD_COLOR)
+        alt, ancho, canales = img.shape
+        for i in range(1, len(img_list)):
+            img_aux = cv2.imread(filepath + img_list[i], cv2.IMREAD_COLOR)
+            aux_alt, aux_ancho, _ = img_aux.shape
+            if alt == aux_alt and ancho == aux_ancho:
+                pass
+                if img_list[0].split('.')[-1] == img_list[i].split('.')[-1]:
+                    pass
+            else:
+                global message2
+                message2 = 'Las imágenes no tienen las mismas dimensiones. No se puede procesar'
+                raise web.seeother('/editar-imagen4')
         ######
         os.system('mpiexec -np %s python bullettime.py' % p)  # Corta y aplica efecto
         # os.system('mpiexec -np %s python limpieza.py' % p)  # Pega y borra fotos restantes
